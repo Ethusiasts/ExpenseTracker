@@ -176,3 +176,129 @@ html {
 .swiper-pagination {
   margin-right: 30px;
 }
+/* This is for the play icon animation and in general the second slide */
+#box {
+  width: 100%;
+  height: 18rem;
+  margin: 10rem 0;
+  padding: 0;
+  position: relative;
+}
+.cont1 {
+  background-color: #FAE04E;
+  width: 100%;
+  height: 18rem;
+  border: none;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.13), 0 6px 6px rgba(0,0,0,0.15);
+}
+/* .cont2 {
+  background-color: #95D741;
+  width: 50%;
+  height: 18rem;
+  border: none;
+} */
+#box2 {
+  width: 100%;
+  height: 22rem;
+  margin: 8rem 0;
+  padding: 1rem;
+  padding-top: 1rem;
+  text-align: left;
+  line-height: 1.5;
+  /* opacity: 0; */
+  transition: opacity 2s ease-in-out, box-shadow 2s ease-in-out;
+}
+.swiper-slide-active #box2 {
+  opacity: 100%;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.13), 0 6px 6px rgba(0,0,0,0.15);
+}
+#box2 p {
+  display: grid;
+  grid-template-columns: 5% 95%;
+  font-size: 1.1rem;
+  padding-bottom: 10px;
+  color: #444;
+  
+}
+#box2 #p1 {
+  transform: translateY(50px);
+  transition: transform 1s ease-in-out;
+}
+#box2 #p2 {
+  transform: translateY(100px);
+  transition: transform 1s ease-in-out;
+}
+#box2 #p3 {
+  transform: translateY(150px);
+  transition: transform 1s ease-in-out;
+}
+#box2 i{
+  color: green;
+}
+#box2 h3{
+  font-size: 1.9rem;
+  line-height: 1.5;
+  letter-spacing: 2;
+  font-weight: bold;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  transform: translateY(-100px);
+  transition: transform 1s ease-in-out;
+}
+.swiper-slide-active #box2 h3{
+  transform: translateY(0px);
+}
+.swiper-slide-active #box2 #p1{
+  transform: translateY(0px);
+}
+.swiper-slide-active #box2 #p2{
+  transform: translateY(0px);
+}
+.swiper-slide-active #box2 #p3{
+  transform: translateY(0px);
+}
+#click {
+  background-color: #47B54E; 
+  border-radius: 50%; 
+  z-index: 1; 
+  width: 100px; 
+  height: 100px;
+  position: absolute;
+  top: 35%;
+  left:40%;
+  /* margin-top: 18%; */
+  opacity: 0%;
+  transform: translateX(-100px);
+  transition: transform 0.7s, opacity 1s;
+}
+
+.swiper-slide-active #box3 {
+  transform: rotate(360deg);
+  /* transform: translateX(30px); */
+  box-shadow: 0 8px 15px rgba(red,0.13), 0 6px 6px rgba(red, 0.15);
+}
+.swiper-slide-active #click {
+  transform: translateX(0px);
+  opacity: 100%;
+  transition-delay: 0.3s;
+}
+
+#click:hover {
+  box-shadow: 0 8px 15px rgba(0,0,0,0.13), 0 6px 6px rgba(0,0,0,0.15);
+}
+#box:hover #click {
+  transform: translateX(0px);
+  opacity: 100%;
+}
+#box3 {
+  color: white;
+  margin: 25px 32px;
+  transition: transform 0.7s, box-shadow 0.5s;
+}
+#click:hover #box3 {
+  transform: rotate(720deg);
+  /* transform: translateX(30px); */
+  box-shadow: 0 8px 15px rgba(red,0.13), 0 6px 6px rgba(red, 0.15);
+}
+
+/* the end */
