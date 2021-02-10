@@ -620,3 +620,70 @@ form.sign-up-form{
   transform: translateX(800px);
 }
 
+/* The animation part */
+.container1.sign-up-mode::before{
+  transform: translate(100%,-50%);
+  right: 52%;
+}
+.container1.sign-up-mode .left-panel .image,
+.container1.sign-up-mode .left-panel .content{
+  transform: translateX(-800px);
+}
+.container1.sign-up-mode .right-panel .content, 
+.container1.sign-up-mode .right-panel .image{
+  transform: translateX(0px);
+}
+.container1.sign-up-mode .left-panel{
+  pointer-events: none;
+}
+.container1.sign-up-mode .right-panel{
+  pointer-events: all;
+}
+.container1.sign-up-mode .signin-signup{
+  left: 25%;
+}
+.container1.sign-up-mode form.sign-in-form{
+  z-index: 1;
+  opacity: 0;
+}
+.container1.sign-up-mode form.sign-up-form{
+  z-index: 2;
+  opacity: 1;
+}
+/* modal */
+.modal-body {
+  position: relative;
+  margin: 0 ;
+  padding: 0;
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.13), 0 6px 6px rgba(0,0,0,0.15);
+}
+.modal-content{
+  padding: 0;
+  margin: 0;
+  height: 70%;
+  border-radius: 10px;
+}
+.btn-close {
+  border-radius: 50%;
+  height: 5px;
+  width: 5px;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  z-index: 0;
+  color: white;
+}
+.modal-content:hover .btn-close {
+  z-index: 10;
+}
+.modal-header {
+  border-bottom: 0 none;
+}
+
+.modal-footer {
+  border-top: 0 none;
+}
+.modal2 {
+  height: 700px;
+}
