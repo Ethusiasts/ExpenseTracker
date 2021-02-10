@@ -687,3 +687,62 @@ form.sign-up-form{
 .modal2 {
   height: 700px;
 }
+
+
+
+/* fourth slide cards */
+.cards1 {
+  position: relative;
+  background-color: white;
+}
+.cards1:hover .sacko{
+  box-shadow: 0 8px 15px rgba(0,0,0,0.13), 0 6px 6px rgba(0,0,0,0.15);
+
+}
+.cards1 .card {
+  position: absolute;
+  top: -4rem;
+  height: 265px;
+  width: 18rem;
+  border-radius: 3%;
+  padding-top: 15%;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.13), 0 6px 6px rgba(0,0,0,0.15);
+}
+.sacko {
+  position: absolute;
+  color: white;
+  z-index: 1;
+  top: -7rem;
+  left: 2rem;
+  border-radius: 50%;
+  height: 6rem;
+  width: 6rem;
+  background-color: #2FA38F;
+  padding-top: 1.25rem;
+}
+.cards11 {
+  transform: translateX(-100px);
+  transition: transform 1s ease-in-out;
+}
+.cards12 {
+  transform: translateY(-100px);
+  transition: transform 1s ease-in-out;
+}
+.cards13 {
+  transform: translateX(100px);
+  transition: transform 1s ease-in-out;
+}
+.swiper-slide-active .cards11{
+  transform: translateX(0);
+  transition-delay: 0.3s;
+}
+.swiper-slide-active .cards12{
+  transition-delay: 0.3s;
+  transform: translateY(0);
+}
+.swiper-slide-active .cards13{
+  transform: translateX(0);
+  transition-delay: 0.3s;
+}
+/* the end */
+
