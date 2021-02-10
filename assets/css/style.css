@@ -858,7 +858,7 @@ form.sign-up-form{
   height: 5rem;
   width: 5rem;
   border-radius: 50%;
-  background-color: blue;
+  background-image: url("../images/s6.jpg");
   margin-left: 5.5rem;
   padding: 1rem, 1rem, 1rem, 0;
 }
