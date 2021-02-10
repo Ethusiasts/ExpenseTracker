@@ -912,4 +912,91 @@ form.sign-up-form{
   transition-delay: 0.5s;
 } */
 
+/* footer */
+footer {
+  position: relative;
+  top: -5rem;
+  background-color: #9DB8B6;
+  width: 100%;
+  height: 18rem;
+  color: white;
+  text-align: left;
+}
+footer .main {
+  height: 18rem;
+  background-color:#20867E;
+  padding: 2rem;
+  padding-top: 1rem;
+  clip-path: polygon(0% 5%,15% 0%,100% 10%,100% 100%,0% 100%);
+}
+footer .contents {
+  max-width: 1080px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
+}
+footer header {
+  font-size: 2rem;
+  padding-block: 1rem;
+}
+section a {
+  display: block;
+  padding-block: 0.5rem;
+  text-decoration: none;
+  color: white;
+  opacity: 50%;
+}
+section a:hover {
+  color: white;
+  opacity: 100%;
+}
+.copyrights {
+  padding-top: 3rem;
+  font-size: 1rem;
+}
+/* the end */
+/* This is for the rotating social media icons */
+#circle {
+  width: 5rem;
+  height: 5rem;
+  border: 2px solid black;
+  border-radius: 50%;
+  padding-top: 1rem;
+  position: relative;
+}
+#rectangle {
+  position: absolute;
+  top: 25%;
+  left: -3%;
+  width: 5.05rem;
+  height: 2.2rem;
+  background-color: black;
+  border: 3px solid black;
+  overflow: hidden;
+  opacity: 0;
+  transition: transform 1s, opacity 0.2s;
+}
+#google {
+  color: white;
+  position: absolute;
+  width: 94%;
+  height: 94%;
+  border-radius: 50%;
+  background-color: black;
+  top: 3%;
+  left: 3.5%;
+  
+}
+#circle:hover{
+  border: 2px solid #fed136;
 
+}
+#circle:hover #google{
+  color: #fed136;
+
+}
+#circle:hover #rectangle {
+  transform: rotate(360deg);
+  opacity: 100%;
+}
+/* end */
