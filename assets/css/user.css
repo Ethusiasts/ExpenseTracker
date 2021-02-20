@@ -40,7 +40,31 @@ body {
     "sidebar main main main";
   padding: 0;
 }
+.block1 .new-entry {
+  /* background-color: black; */
+  background: #f3f4f6;
+  border: 1px solid pink;
+  border-radius: 3px;
+  height: 30vh;
+}
+.block1 .entry-title {
+  font-size: 1.1rem;
+  padding-left: 1rem;
+  padding: 0.5rem;
+}
 
+.block2 .new-entry {
+  /* background-color: black; */
+  background: #f3f4f6;
+  border: 1px solid lightgreen;
+  border-radius: 3px;
+  height: 30vh;
+}
+.block2 .entry-title {
+  font-size: 1.1rem;
+  padding-left: 1rem;
+  padding: 0.5rem;
+}
 .navbar {
   background: white;
   grid-area: nav;

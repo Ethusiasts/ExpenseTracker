@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    <!-- Navigation Bar -->
     <div class="container-fluid container-whole">
         <nav class="navbar">
             <div class="nav-icon" onclick="togglesidebar()">
@@ -34,10 +35,121 @@
                 </a>
             </div>
         </nav>
-
+        <!-- Central content -->
         <main class="container-fluid px-3 pt-3">
+            <div class="block1">
+                <div class="container-fluid new-entry">
+                    <div class="entry-title">
+                        NEW ENTRY
+                    </div>
+                    <div class="entry-list container">
+                        <form action="">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control category1" placeholder="Category"
+                                            aria-label="Username">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control expense_type1" placeholder="Expense Type"
+                                            aria-label="Username">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group mb-3">
+                                        <button class="btn btn-outline-secondary minus1" type="button">-</button>
+                                        <button class="btn btn-outline-secondary plus1" type="button">+</button>
+                                        <input type="text" class="form-control amount1" placeholder="Amount"
+                                            aria-label="Example text with two button addons">
+                                        <button class="btn btn-outline-secondary" type="button">Birr</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="input-group mb-3 col-3">
+                                        <input type="date" class="form-control date1"
+                                            aria-label="Dollar amount (with dot and two decimal places)">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group mb-3 col-3">
+                                        <input type="time" class="form-control time1"
+                                            aria-label="Dollar amount (with dot and two decimal places)">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <button type="button" class="btn btn-danger button1">Create Expense Entry</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="main_container">
+                    <div class="accordion accordion-flush wrap" id="accordionFlushExample">
+                    </div>
+                </div>
+            </div>
+
+            <div class="block2 blocka">
+                <div class="container-fluid new-entry">
+                    <div class="entry-title">
+                        NEW ENTRY
+                    </div>
+                    <div class="entry-list container">
+                        <form action="">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control category2" placeholder="Category"
+                                            aria-label="Username">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control income_type2" placeholder="Income Type"
+                                            aria-label="Username">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group mb-3">
+                                        <button class="btn btn-outline-secondary minus2" type="button">-</button>
+                                        <button class="btn btn-outline-secondary plus2" type="button">+</button>
+                                        <input type="text" class="form-control amount2" placeholder="Amount"
+                                            aria-label="Example text with two button addons">
+                                        <button class="btn btn-outline-secondary" type="button">Birr</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="input-group mb-3 col-3">
+                                        <input type="date" class="form-control date2"
+                                            aria-label="Dollar amount (with dot and two decimal places)">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group mb-3 col-3">
+                                        <input type="time" class="form-control time2"
+                                            aria-label="Dollar amount (with dot and two decimal places)">
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <button type="button" class="btn btn-success button2">Create Income Entry</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="main_container wrapIncome">
+
+                </div>
+            </div>
         </main>
 
+        <!-- SideBar -->
         <div id="sidebar">
             <div class="sidebar__title">
                 <div class="sidebar__img">
@@ -85,6 +197,7 @@
 
         </div>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
