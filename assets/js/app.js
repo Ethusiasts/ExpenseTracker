@@ -10,6 +10,9 @@ var swiper = new Swiper('.swiper-container', {
     speed: 600,
   });
 
+
+
+  
   // The third slides javascript file
 
   var cont3 = document.querySelector(".cont3")
