@@ -81,6 +81,38 @@ const errorMessage5 = document.querySelector('#error_message5')
 
 
 
+
+login.addEventListener('click',join);
+
 // login and signup pages
+
+
+function join(){
+    var arr = [];
+    db.Users.each(user =>arr.push(user)).then(() => {
+        for(var index = 0; index < arr.length; index++){
+            errorMessage4.style.display = "none";
+            errorMessage5.style.display = "none";
+            if(arr[index].UserName.toString() === loginName.value.toString()){
+                var pass = arr[index].Password;
+                if(loginPassword.value !== pass){
+                    errorMessage5.innerHTML = "Wrong password";
+                    errorMessage5.style.display = "block";
+                    errorMessage5.style.color = "#ff0000";
+                    return;
+                }
+                else{
+                    errorMessage5.style.display = "none";
+                    return;
+                }
+            }
+        }
+
+        errorMessage4.innerHTML = "Wrong UserName";
+        errorMessage4.style.display = "block";
+        errorMessage4.style.color = "#ff0000";
+
+    }
+)};
 
 
