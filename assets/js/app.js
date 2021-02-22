@@ -62,3 +62,26 @@ sign_up_btn.addEventListener('click', () => {
 sign_in_btn.addEventListener('click', () => {
     container.classList.remove("sign-up-mode");
 })
+
+
+
+
+// login and signup pages
+const loginName = document.querySelector('#loginUserName');
+const loginPassword = document.querySelector('#loginPassword');
+const account = document.querySelector('#account');
+const p = document.querySelector('#p');
+
+const login = document.querySelector('#login')
+const errorMessage = document.querySelector('#error_message')
+const errorMessage2 = document.querySelector('#error_message2')
+const errorMessage3 = document.querySelector('#error_message3')
+const errorMessage4 = document.querySelector('#error_message4')
+const errorMessage5 = document.querySelector('#error_message5')
+
+
+
+
+// login and signup pages
+
+

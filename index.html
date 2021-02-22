@@ -378,15 +378,17 @@
                         <div class="signin-signup">
                             <form action="" class="sign-in-form">
                                 <h2 class="title">Sign in</h2>
-                                <div class="input-field">
+                                <div class="input-field" id="p">
                                     <i class="fa fa-user"></i>
-                                    <input type="text" placeholder="Username">
+                                    <input type="text" placeholder="Username" id="loginUserName">
                                 </div>
+                                <div id="error_message4"></div>
                                 <div class="input-field">
                                     <i class="fa fa-lock"></i>
-                                    <input type="password" placeholder="Password">
+                                    <input type="password" placeholder="Password" id="loginPassword">
                                 </div>
-                                <input type="submit" value="Login" class="btn solid">
+                                <div id="error_message5"></div>
+                                <a class="btn solid" id="login" role="button">Login</a>
                                 <p class="social-text">Or Sign in with social platforms</p>
                                 <div class="social-media">
                                     <a href="#" class="social-icon">
@@ -407,17 +409,20 @@
                                 <h2 class="title">Sign up</h2>
                                 <div class="input-field">
                                     <i class="fa fa-user"></i>
-                                    <input type="text" placeholder="Username">
+                                    <input type="text" placeholder="Username" id="signupUserName">
                                 </div>
+                                <div id="error_message"></div>
                                 <div class="input-field">
-                                    <i class="fa fa-envelope"></i>
-                                    <input type="text" placeholder="Email">
+                                    <i class="fa fa-file-invoice-dollar"></i>
+                                    <input type="text" placeholder="Your Account" id="account">
                                 </div>
+                                <div id="error_message2"></div>
                                 <div class="input-field">
                                     <i class="fa fa-lock"></i>
-                                    <input type="password" placeholder="Password">
+                                    <input type="password" placeholder="Password" id="password">
                                 </div>
-                                <input type="submit" value="Sign up" class="btn solid">
+                                <div id="error_message3"></div>
+                                <Button type="button" class="btn solid" id="signup">Sign Up</Button>
                                 <p class="social-text">Or Sign up with social platforms</p>
                                 <div class="social-media">
                                     <a href="#" class="social-icon">
