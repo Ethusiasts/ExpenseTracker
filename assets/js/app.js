@@ -1,3 +1,5 @@
+import exptrcker,{insertrecord} from './module.js';
+import {db} from './indexDB.js';
 var swiper = new Swiper('.swiper-container', {
     pagination: {el:'.swiper-pagination',clickable: true},
     direction: 'vertical',
@@ -67,11 +69,14 @@ sign_in_btn.addEventListener('click', () => {
 
 
 // login and signup pages
+const signupUserName = document.querySelector('#signupUserName');
 const loginName = document.querySelector('#loginUserName');
+const password = document.querySelector('#password');
 const loginPassword = document.querySelector('#loginPassword');
 const account = document.querySelector('#account');
 const p = document.querySelector('#p');
 
+const signup = document.querySelector('#signup')
 const login = document.querySelector('#login')
 const errorMessage = document.querySelector('#error_message')
 const errorMessage2 = document.querySelector('#error_message2')
@@ -83,8 +88,67 @@ const errorMessage5 = document.querySelector('#error_message5')
 
 
 login.addEventListener('click',join);
+signup.addEventListener('click',add);
 
 // login and signup pages
+function createUser (){
+  insertrecord(db.Users, {
+      UserName: signupUserName.value,
+      Password: password.value,
+      AccountNumber: account.value
+      
+  });
+}
+function add(){
+  const arr = [];
+  var passw=  /[A-Za-z0-9]\w{8,16}$/;
+  var user=  /[A-Za-z]$/;
+  var acc = /[0-9]\w{13,14}$/;
+
+
+  if(!(password.value.match(passw))){
+      errorMessage3.style.display = "block";
+      errorMessage3.innerHTML = "minimum length of 8 and shouldn't contain other than numbers and letters";
+      errorMessage3.style.color = "#ff0000";
+  }
+  else{
+      errorMessage3.style.display = "none";
+  }
+  if (!(signupUserName.value.match(user))){
+      errorMessage.style.display = "block";
+      errorMessage.innerHTML = "Only letters are allowed!";
+      errorMessage.style.color = "#ff0000";
+      
+  }
+  else{
+      errorMessage.style.display = "none";
+  }
+  if(!(account.value.match(acc))){
+      errorMessage2.style.display = "block";
+      errorMessage2.innerHTML = "only 13 digits from 0-9.";
+      errorMessage2.style.color = "#ff0000";
+      
+  }
+  else{
+      errorMessage2.style.display = "none";
+  }
+  if(password.value.match(passw) && signupUserName.value.match(user) && account.value.match(acc)){
+      db.Users.each(user => arr.push(user.UserName)).then(() => {
+          for(var index = 0; index < arr.length; index++){
+              if(arr[index].toString() === signupUserName.value.toString()){
+                  errorMessage.style.display = "block";
+                  errorMessage.innerHTML = "User already exist!";
+                  errorMessage.style.color = "#ff0000";
+                  return;
+              }
+          }
+          createUser();
+          errorMessage.style.display = "none";
+      });
+
+  }
+  
+}
 
 
 function join(){
