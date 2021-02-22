@@ -144,6 +144,9 @@ function add(){
           }
           createUser();
           errorMessage.style.display = "none";
+          var para = new URLSearchParams()
+          para.append("nameSignUp", signupUserName.value);
+          location.href = "./user.html?" + para.toString();
       });
 
   }
@@ -167,6 +170,9 @@ function join(){
                 }
                 else{
                     errorMessage5.style.display = "none";
+                    var para = new URLSearchParams()
+                    para.append("nameLoginU", loginName.value);
+                    location.href = "./user.html?" + para.toString();
                     return;
                 }
             }
