@@ -1,8 +1,7 @@
-
 import exptrcker,{insertrecord,} from './module.js';
 import {db} from './indexDB.js';
 
-//defining Ui variable
+// Defining UI variables
 const category1 = document.querySelector(".category1")
 const expense_type1 = document.querySelector(".expense_type1")
 const amount1 = document.querySelector(".amount1")
@@ -30,6 +29,7 @@ const acord3 = document.querySelector(".acord3")
 
 const wrap = document.querySelector(".wrap")
 const wrapIncome = document.querySelector(".wrapIncome")
+
 // Action Listners
 button1.addEventListener('click',createExpense);
 button2.addEventListener('click',createIncome);
@@ -46,6 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
     expenseLoader();
     incomeLoader();
 })
+
+// defining expense loader function
 
 function expenseLoader(){
     let obj1 = new Array()
@@ -91,8 +93,7 @@ function expenseLoader(){
 })
 
 }
-
-//Income loder function
+//defining income loader function
 function incomeLoader(){
     let obj1 = new Array()
     let visited = {};
@@ -136,6 +137,7 @@ function incomeLoader(){
 })
 }
 
+//create expense function
 
 function createExpense (){
     insertrecord(db.expense, {
@@ -150,6 +152,8 @@ function createExpense (){
     category1.value = expense_type1.value = amount1.value = date1.value = time1.value = ""
     expenseLoader();
 }
+
+//defining create income function
 function createIncome(){
     insertrecord(db.income, {
         userName: nameSign || nameLogin,
@@ -166,4 +170,6 @@ function createIncome(){
     // updateData( db.income, acord2, wrap)
     // updateData( db.income, acord3, wrap)
 }
+
+
 
