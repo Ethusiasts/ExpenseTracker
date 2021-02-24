@@ -47,7 +47,50 @@ document.addEventListener('DOMContentLoaded', () => {
     incomeLoader();
 })
 
+function expenseLoader(){
+    let obj1 = new Array()
+    let visited = {};
+    db.expense.each(entity => {
+    obj1.push(entity)}).then(()=>{
+        wrap.innerHTML = ""
+        console.log("I Love you")
+        for (let i =0; i < obj1.length; i++){
+            if(obj1[i].userName === nameSign || nameLogin){
+                if(obj1[i].category in visited){
+                    const accord = document.querySelector('.acord'+ `${visited[obj1[i].category]}`);
+                    accord.innerHTML += `
+                    <div class="row"> <div class="col-1">${i}</div> <div class="col-3">${obj1[i].income_type || obj1[i].expense_type}</div> <div class="col-2">${obj1[i].amount}</div> <div class="col-2">${obj1[i].date}</div> <div class="col-2">${obj1[i].time}</div> <div class="col-1"><i class="fas fa-edit" style="color: lightgreen;"></i></div><div class="col-1"><i class="fas fa-trash-alt" style="color: red;"></i></div> </div>             
+                    `
+                    visited[`${obj1[i].category}`] = i;
+                }
+                else{
+                    var wrapper = document.createElement("div")
+                    wrapper.innerHTML = 
+                    `
+                    <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-heading${i}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${i}" aria-expanded="false" aria-controls="flush-collapse${i}">
+                                ${obj1[i].category}
+                                </button>
+                            </h2>
+                            <div id="flush-collapse${i}" class="accordion-collapse collapse " aria-labelledby="flush-heading${i}" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body acord${i}"> 
+                                    <div class="row"> <div class="col-1">No.</div> <div class="col-3">Expense_type</div> <div class="col-2">Amount</div> <div class="col-2">Date</div> <div class="col-2">Time</div> <div class="col-1">Edit</div><div class="col-1">Delete</div> </div>
+                                    <div class="row"> <div class="col-1">${obj1[i].id}</div> <div class="col-3">${obj1[i].income_type || obj1[i].expense_type}</div> <div class="col-2">${obj1[i].amount}</div> <div class="col-2">${obj1[i].date}</div> <div class="col-2">${obj1[i].time}</div> <div class="col-1"><i class="fas fa-edit" style="color: lightgreen;"></i></div><div class="col-1"><i class="fas fa-trash-alt" style="color: red;"></i></div> </div>
+                                </div>
+                                
+                            </div>
+                    </div>
+                    `
+                    wrap.appendChild(wrapper)
+                    visited[`${obj1[i].category}`] = i;
+                }
+                
+            }
+        }
+})
 
+}
 
 
 
