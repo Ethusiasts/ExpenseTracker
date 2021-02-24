@@ -49,3 +49,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+
+function createExpense (){
+    insertrecord(db.expense, {
+        userName: nameSign || nameLogin,
+        category: category1.value,
+        expense_type: expense_type1.value,
+        amount: amount1.value,
+        date: date1.value,
+        time: time1.value
+    });
+    // updateData( db.expense, wrap,category1.value, expense_type1.value, amount1.value, date1.value, time1.value)
+    category1.value = expense_type1.value = amount1.value = date1.value = time1.value = ""
+    expenseLoader();
+}
+function createIncome(){
+    insertrecord(db.income, {
+        userName: nameSign || nameLogin,
+        category: category2.value,
+        income_type: income_type2.value,
+        amount: amount2.value,
+        date: date2.value,
+        time: time2.value
+    });
+
+    category2.value = income_type2.value = amount2.value = date2.value = time2.value = ""
+    incomeLoader();
+    // updateData( db.income, acord1, wrap)
+    // updateData( db.income, acord2, wrap)
+    // updateData( db.income, acord3, wrap)
+}
+
