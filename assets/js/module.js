@@ -1,6 +1,6 @@
 const exptrcker = (dbname, table) => {
     const db = new Dexie(dbname);
-    db.version(1).stores(table);
+    db.version(2).stores(table);
     db.open();
     return db
 }
@@ -35,15 +35,13 @@ const empty = (object) => {
 }
 
 
-
-
-
-
-
 export default exptrcker;
 export {
-    insertrecord
+    insertrecord,
 }
+
+
+
 
 
 
