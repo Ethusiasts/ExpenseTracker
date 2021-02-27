@@ -237,6 +237,65 @@ main {
   position: absolute;
 }
 
+/* Statistics Styling */
+.tab {
+  font-size: 1.4rem;
+  padding: 1rem;
+}
+.tab a {
+  text-decoration: none;
+  color: black;
+}
+#chart1 text {
+  fill: black;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+#chart2 text {
+  fill: black;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+#chart3 text {
+  fill: black;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+
+.axis text {
+  font: 10px sans-serif;
+}
+
+.axis path, .axis line {
+  fill: none;
+  /*stroke: #fff;*/
+  shape-rendering: crispEdges;
+}
+path {
+  stroke: steelblue;
+  stroke-width: 2;
+  fill: none;
+}
+.expincswap {
+  /* background-color: lightgrey; */
+  /* border: solid brown 0.1rem; */
+  padding-top: 7rem;
+  font-size: 1.5rem;
+  letter-spacing: 2;
+}
+.expincswap a{
+  text-decoration: none;
+  color: black;
+}
+.expincswap div{
+  margin: 3rem 0;
+}
+
+
+
+
+/* Statistics styling end */
+
 /* For the group accordion */
 .accordion-flush .accordion-item:first-of-type .accordion-button {
   border-top-width: 0;
