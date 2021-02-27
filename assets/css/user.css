@@ -52,7 +52,9 @@ body {
   padding-left: 1rem;
   padding: 0.5rem;
 }
-
+.blocka {
+  display: none;
+}
 .block2 .new-entry {
   /* background-color: black; */
   background: #f3f4f6;
