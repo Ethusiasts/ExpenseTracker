@@ -155,3 +155,529 @@ function increment1() {
 
   
 //   End for Increment values
+
+
+
+// Statistics Page
+
+
+// Getting random colors for the pie chart
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
+
+// Getting data for the pie chart and plotting the pie chart
+
+
+// Pie chart drawer for the daily tab
+var chartData1;
+var chartOptions1;
+function expenseGetData1(){
+  var track1 = true
+  let track2 = new Array()
+  let obj1 = new Array()
+  db.expense.each(entity => {
+  obj1.push(entity)}).then(()=>{
+    var today = new Date().getDay()
+    console.log(obj1)
+    chartOptions1 = [{
+      "captions": [{}],
+      "color": [{}],
+      "xaxis": "Catagory",
+      "xaxisl1": "Type",
+      "yaxis": "Price"
+      }]
+    chartData1 = []
+      for (let i =0; i < obj1.length; i++){
+          console.log("I hate you")
+          var str = obj1[i].date.slice(8, 10);
+          console.log(str)
+          console.log("25")
+          console.log(track2)
+          console.log(obj1[i].category.toUpperCase())
+          track2.forEach(element => {
+            console.log(obj1[i].category.toUpperCase())
+            console.log(element)
+            if (obj1[i].category.toUpperCase() == element) {
+              track1 = false
+              console.log(track2)
+            }
+            });
+            if (track1 == false) {
+              for (var key in chartOptions1[0]["captions"][0]) {
+                if (chartOptions1[0]["captions"][0].hasOwnProperty(key)) {
+                    if(chartOptions1[0]["captions"][0][key] == obj1[i].category.toUpperCase()){
+                      var object1 = {}
+                      object1["Catagory"] = key
+                      object1["Type"] = obj1[i].expense_type
+                      object1["Price"] = parseInt(obj1[i].amount)
+                      chartData1.push(object1)
+                      track1 = true
+                    }
+                }
+              }
+            }
+
+
+            if(str === "25" && track1){
+              var cat = obj1[i].category.toUpperCase()
+              console.log(cat)
+              chartOptions1[0]["captions"][0]["SAKS" + i] = cat
+              chartOptions1[0]["color"][0]["SAKS" + i] = getRandomColor()
+              console.log(chartOptions1)
+                var object1 = {}
+                object1["Catagory"] = "SAKS" + i
+                object1["Type"] = obj1[i].expense_type
+                object1["Price"] = parseInt(obj1[i].amount)
+                chartData1.push(object1)
+                track2.push(cat)
+              console.log(chartData1)
+              track1 = true
+            }
+            console.log(track2)
+      }
+}).then(()=> {
+  $(document).ready(function () {
+    Plot1(innerCont1, chartInnerDiv1);
+});
+})
+}
+
+
+
+// Pie chart drawer for the weekly tab
+
+var chartData2;
+var chartOptions2;
+function expenseGetData2(){
+  var track1 = true
+  let track2 = new Array()
+  let obj1 = new Array()
+  db.expense.each(entity => {
+  obj1.push(entity)}).then(()=>{
+    var today = new Date().getDay()
+    chartOptions2 = [{
+      "captions": [{}],
+      "color": [{}],
+      "xaxis": "Catagory",
+      "xaxisl1": "Type",
+      "yaxis": "Price"
+      }]
+    chartData2 = []
+      for (let i =0; i < obj1.length; i++){
+          console.log("I hate you")
+          var str = obj1[i].date.slice(8, 10);
+          console.log(str)
+          console.log("25")
+          track2.forEach(element => {
+            if (obj1[i].category.toUpperCase() == element) {
+              track1 = false
+            }
+            });
+            if (track1 == false) {
+              for (var key in chartOptions2[0]["captions"][0]) {
+                if (chartOptions2[0]["captions"][0].hasOwnProperty(key)) {
+                    if(chartOptions2[0]["captions"][0][key] == obj1[i].category.toUpperCase()){
+                      var object1 = {}
+                      object1["Catagory"] = key
+                      object1["Type"] = obj1[i].expense_type
+                      object1["Price"] = parseInt(obj1[i].amount)
+                      chartData2.push(object1)
+                      break
+                    }
+                }
+              }
+            }
+
+            if(str === "25" && track1){
+              var cat = obj1[i].category.toUpperCase()
+              console.log(cat)
+              chartOptions2[0]["captions"][0]["SAKS" + i] = cat
+              chartOptions2[0]["color"][0]["SAKS" + i] = getRandomColor()
+              console.log(chartOptions2)
+                var object1 = {}
+                object1["Catagory"] = "SAKS" + i
+                object1["Type"] = obj1[i].expense_type
+                object1["Price"] = parseInt(obj1[i].amount)
+                chartData2.push(object1)
+                track2.push(cat)
+              console.log(chartData2)
+              track1 = true
+            }
+      }
+}).then(()=> {
+  $(document).ready(function () {
+    Plot2(innerCont2, chartInnerDiv2);
+});
+})
+}
+
+
+
+// Pie chart drawer for the monthly tab
+
+var chartData3;
+var chartOptions3;
+function expenseGetData3(){
+  var track1 = true
+  let track2 = new Array()
+  let obj1 = new Array()
+  db.expense.each(entity => {
+  obj1.push(entity)}).then(()=>{
+    var today = new Date().getDay()
+    chartOptions3 = [{
+      "captions": [{}],
+      "color": [{}],
+      "xaxis": "Catagory",
+      "xaxisl1": "Type",
+      "yaxis": "Price"
+      }]
+    chartData3 = []
+      for (let i =0; i < obj1.length; i++){
+          console.log("I hate you")
+          var str = obj1[i].date.slice(8, 10);
+          console.log(str)
+          console.log("25")
+          track2.forEach(element => {
+            if (obj1[i].category.toUpperCase() == element) {
+              track1 = false
+            }
+            });
+            if (track1 == false) {
+              for (var key in chartOptions3[0]["captions"][0]) {
+                if (chartOptions3[0]["captions"][0].hasOwnProperty(key)) {
+                    if(chartOptions3[0]["captions"][0][key] == obj1[i].category.toUpperCase()){
+                      var object1 = {}
+                      object1["Catagory"] = key
+                      object1["Type"] = obj1[i].expense_type
+                      object1["Price"] = parseInt(obj1[i].amount)
+                      chartData3.push(object1)
+                      break
+                    }
+                }
+              }
+            }
+
+            if(str === "25" && track1){
+              var cat = obj1[i].category.toUpperCase()
+              console.log(cat)
+              chartOptions3[0]["captions"][0]["SAKS" + i] = cat
+              chartOptions3[0]["color"][0]["SAKS" + i] = getRandomColor()
+              console.log(chartOptions1)
+                var object1 = {}
+                object1["Catagory"] = "SAKS" + i
+                object1["Type"] = obj1[i].expense_type
+                object1["Price"] = parseInt(obj1[i].amount)
+                chartData3.push(object1)
+                track2.push(cat)
+              console.log(chartData3)
+              track1 = true
+            }
+      }
+}).then(()=> {
+  $(document).ready(function () {
+    Plot3(innerCont3, chartInnerDiv3);
+});
+})
+}
+
+
+
+// Pie chart main plotter functions
+
+// Variables
+
+var innerCont1 = " .innerCont1"
+var innerCont2 = " .innerCont2"
+var innerCont3 = " .innerCont3"
+var chartInnerDiv1 = '<div class="innerCont1" style="overflow: auto;top:0px; left: 0px; height:91% ; Width:100% ;overflow: hidden;"/>';
+var chartInnerDiv2 = '<div class="innerCont2" style="overflow: auto;top:0px; left: 0px; height:91% ; Width:100% ;overflow: hidden;"/>';
+var chartInnerDiv3 = '<div class="innerCont3" style="overflow: auto;top:0px; left: 0px; height:91% ; Width:100% ;overflow: hidden;"/>';
+var runningColors;
+var runningData;
+    
+// main functions
+
+
+function Plot1(innerCont, chartInnerDiv) {
+    TransformChartData(chartData1, chartOptions1, 0);
+    BuildPie("chart1", chartData1, chartOptions1, 0, innerCont, chartInnerDiv)
+}
+function Plot2(innerCont, chartInnerDiv) {
+    TransformChartData(chartData2, chartOptions2, 0);
+    BuildPie("chart2", chartData2, chartOptions2, 0, innerCont, chartInnerDiv)
+}
+function Plot3(innerCont, chartInnerDiv) {
+    TransformChartData(chartData3, chartOptions3, 0);
+    BuildPie("chart3", chartData3, chartOptions3, 0, innerCont, chartInnerDiv)
+}
+function BuildPie(id, chartData, options, level, innerCont, chartInnerDiv) {
+    var xVarName;
+    var divisionRatio = 2.5;
+    var legendoffset = (level == 0) ? 0 : -40;
+
+    d3.selectAll("#" + id + innerCont).remove();
+    $("#" + id).append(chartInnerDiv);
+    var chart = d3.select("#" + id + innerCont);
+
+    var yVarName = options[0].yaxis;
+    var width = $(chart[0]).outerWidth(),
+    height = $(chart[0]).outerHeight(),
+    radius = Math.min(width, height) / divisionRatio;
+    console.log(width)
+    console.log(height)
+    if (level == 1) {
+        xVarName = options[0].xaxisl1;
+    }
+    else {
+        xVarName = options[0].xaxis;
+    }
+
+    var rcolor = d3.scale.ordinal().range(runningColors);
+
+    var arc = d3.svg.arc()
+            .outerRadius(radius)
+            .innerRadius(radius - 160);
+
+    var arcOver = d3.svg.arc().outerRadius(radius + 20).innerRadius(radius - 150);
+
+    chart = chart
+            .append("svg")  //append svg element inside #chart
+            .attr("width", width)    //set width
+            .attr("height", height)  //set height
+            .append("g")
+            .attr("transform", "translate(" + (width / divisionRatio) + "," + ((height / divisionRatio) + 30) + ")");
+
+    var pie = d3.layout.pie()
+                .sort(null)
+                .value(function (d) {
+                    return d.Price;
+                });
+
+    var g = chart.selectAll(".arc")
+                .data(pie(runningData))
+                .enter().append("g")
+                .attr("class", "arc");
+
+    var count = 0;
+
+    var path = g.append("path")
+                .attr("d", arc)
+                .attr("id", function (d) { return "arc-" + (count++); })
+                .style("opacity", function (d) {
+                    return d.data["op"];
+                });
+
+    path.on("mouseenter", function (d) {
+        d3.select(this)
+            .attr("stroke", "white")
+            .transition()
+            .duration(200)
+            .attr("d", arcOver)
+            .attr("stroke-width", 1);
+    })
+     .on("mouseleave", function (d) {
+         d3.select(this).transition()
+             .duration(200)
+             .attr("d", arc)
+             .attr("stroke", "none");
+     })
+     .on("click", function (d) {
+         if (this._listenToEvents) {
+             // Reset inmediatelly
+             d3.select(this).attr("transform", "translate(0,0)")
+             // Change level on click if no transition has started
+             path.each(function () {
+                 this._listenToEvents = false;
+             });
+         }
+         d3.selectAll("#" + id + " svg").remove();
+         if (level == 1) {
+             TransformChartData(chartData, options, 0, d.data[xVarName]);
+             BuildPie(id, chartData, options, 0, innerCont, chartInnerDiv);
+         }
+         else {
+             var nonSortedChart = chartData.sort(function (a, b) {
+                 return parseFloat(b[options[0].yaxis]) - parseFloat(a[options[0].yaxis]);
+             });
+             TransformChartData(nonSortedChart, options, 1, d.data[xVarName]);
+             BuildPie(id, nonSortedChart, options, 1, innerCont, chartInnerDiv);
+         }
+
+     });
+
+    path.append("svg:title")
+    .text(function (d) {
+        return d.data["title"] + " (" + d.data[yVarName] + ")";
+    });
+
+    path.style("fill", function (d) {
+        return rcolor(d.data[xVarName]);
+    })
+     .transition().duration(1000).attrTween("d", tweenIn).each("end", function () {
+         this._listenToEvents = true;
+     });
+
+
+    g.append("text")
+     .attr("transform", function (d) { return "translate(" + arc.centroid(d) + ")"; })
+     .attr("dy", ".35em")
+     .style("text-anchor", "middle")
+     .style("opacity", 1)
+     .text(function (d) {
+         return d.data[yVarName];
+     });
+
+    count = 0;
+    var legend = chart.selectAll(".legend")
+        .data(runningData).enter()
+        .append("g").attr("class", "legend")
+        .attr("legend-id", function (d) {
+            return count++;
+        })
+        .attr("transform", function (d, i) {
+            return "translate(15," + (parseInt("-" + (runningData.length * 10)) + i * 28 + legendoffset) + ")";
+        })
+        .style("cursor", "pointer")
+        .on("click", function () {
+            var oarc = d3.select("#" + id + " #arc-" + $(this).attr("legend-id"));
+            oarc.style("opacity", 0.3)
+            .attr("stroke", "white")
+            .transition()
+            .duration(200)
+            .attr("d", arcOver)
+            .attr("stroke-width", 1);
+            setTimeout(function () {
+                oarc.style("opacity", function (d) {
+                    return d.data["op"];
+                })
+               .attr("d", arc)
+               .transition()
+               .duration(200)
+               .attr("stroke", "none");
+            }, 1000);
+        });
+
+    var leg = legend.append("rect");
+
+    leg.attr("x", width / 2)
+        .attr("width", 18).attr("height", 18)
+        .style("fill", function (d) {
+            return rcolor(d[yVarName]);
+        })
+        .style("opacity", function (d) {
+            return d["op"];
+        });
+    legend.append("text").attr("x", (width / 2) - 5)
+        .attr("y", 9).attr("dy", ".35em")
+        .style("text-anchor", "end").text(function (d) {
+            return d.caption;
+        });
+
+    leg.append("svg:title")
+    .text(function (d) {
+        return d["title"] + " (" + d[yVarName] + ")";
+    });
+
+    function tweenOut(data) {
+        data.startAngle = data.endAngle = (2 * Math.PI);
+        var interpolation = d3.interpolate(this._current, data);
+        this._current = interpolation(0);
+        return function (t) {
+            return arc(interpolation(t));
+        };
+    }
+
+    function tweenIn(data) {
+        var interpolation = d3.interpolate({ startAngle: 0, endAngle: 0 }, data);
+        this._current = interpolation(0);
+        return function (t) {
+            return arc(interpolation(t));
+        };
+    }
+
+}
+
+function TransformChartData(chartData, opts, level, filter) {
+    var result = [];
+    var resultColors = [];
+    var counter = 0;
+    var hasMatch;
+    var xVarName;
+    var yVarName = opts[0].yaxis;
+
+    if (level == 1) {
+        xVarName = opts[0].xaxisl1;
+
+        for (var i in chartData) {
+            hasMatch = false;
+            for (var index = 0; index < result.length; ++index) {
+                var data = result[index];
+
+                if ((data[xVarName] == chartData[i][xVarName]) && (chartData[i][opts[0].xaxis]) == filter) {
+                    result[index][yVarName] = result[index][yVarName] + chartData[i][yVarName];
+                    hasMatch = true;
+                    break;
+                }
+
+            }
+            if ((hasMatch == false) && ((chartData[i][opts[0].xaxis]) == filter)) {
+                if (result.length < 9) {
+                    var ditem = {}
+                    ditem[xVarName] = chartData[i][xVarName];
+                    ditem[yVarName] = chartData[i][yVarName];
+                    ditem["caption"] = chartData[i][xVarName].substring(0, 10) + '...';
+                    ditem["title"] = chartData[i][xVarName];
+                    ditem["op"] = 1.0 - parseFloat("0." + (result.length));
+                    result.push(ditem);
+
+                    resultColors[counter] = opts[0].color[0][chartData[i][opts[0].xaxis]];
+
+                    counter += 1;
+                }
+            }
+        }
+    }
+    else {
+        xVarName = opts[0].xaxis;
+
+        for (var i in chartData) {
+            hasMatch = false;
+            for (var index = 0; index < result.length; ++index) {
+                var data = result[index];
+
+                if (data[xVarName] == chartData[i][xVarName]) {
+                    result[index][yVarName] = result[index][yVarName] + chartData[i][yVarName];
+                    hasMatch = true;
+                    break;
+                }
+            }
+            if (hasMatch == false) {
+                ditem = {};
+                ditem[xVarName] = chartData[i][xVarName];
+                ditem[yVarName] = chartData[i][yVarName];
+                ditem["caption"] = opts[0].captions != undefined ? opts[0].captions[0][chartData[i][xVarName]] : "";
+                ditem["title"] = opts[0].captions != undefined ? opts[0].captions[0][chartData[i][xVarName]] : "";
+                ditem["op"] = 1;
+                result.push(ditem);
+
+                resultColors[counter] = opts[0].color != undefined ? opts[0].color[0][chartData[i][xVarName]] : "";
+
+                counter += 1;
+            }
+        }
+    }
+
+
+    runningData = result;
+    runningColors = resultColors;
+    return;
+}
+
+
+// End of the pie chart plotter function
