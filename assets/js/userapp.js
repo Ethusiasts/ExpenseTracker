@@ -168,6 +168,7 @@ function increment1() {
 // Group and Ikub Home page
 
 // variables for group and ikub reception
+var team_member = new Array();
 var add1 = document.querySelector(".add1")
 var groupName = document.querySelector(".groupName")
 var member1 = document.querySelector(".member1")

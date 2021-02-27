@@ -4,7 +4,7 @@ const exptrcker = (dbname, table) => {
     db.open();
     return db
 }
-
+ 
 const insertrecord = (table, data) =>{
     console.log(data)
     let flag = empty(data)
