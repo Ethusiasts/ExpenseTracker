@@ -165,6 +165,77 @@ function increment1() {
   
 //   End for Increment values
 
+// Group and Ikub Home page
+
+// variables for group and ikub reception
+var add1 = document.querySelector(".add1")
+var groupName = document.querySelector(".groupName")
+var member1 = document.querySelector(".member1")
+var members1 = document.querySelector(".members1")
+
+// Event listeners for the group reception
+add1.addEventListener('click', addMember1)
+members1.addEventListener('click', removeMember1)
+
+// Functions for the group reception
+function addMember1() {
+    members1.innerHTML += `
+
+    <li class="list-group-item"><p style = "display: inline">${member1.value}</p><a href="#" class="edit-item secondary-content" style="color : red;"><i class="fas fa-edit" style="color: lightgreen;"></i></a>        <a href="#" class="delete-item secondary-content" style="color : red;"><i class="fa fa-remove"></i></a> </li>
+    `
+    team_member.push(member1.value)
+    console.log(team_member)
+    member1.value = ""
+}
+
+  function removeMember1(e) {
+    if (e.target.parentElement.classList.contains('delete-item')) {
+        if (confirm('Are You Sure to delete?')) {
+            console.log(e.target.parentElement.parentElement.firstElementChild.textContent);
+            console.log(team_member)
+            var index = team_member.indexOf(e.target.parentElement.parentElement.firstElementChild.textContent);
+              if (index > -1) {
+                team_member.splice(index, 1);
+              }
+              console.log(team_member)
+            e.target.parentElement.parentElement.remove();
+        }
+  
+    }
+  
+    if (e.target.parentElement.classList.contains('edit-item')) {
+      if (confirm('Are You Sure to Edit?')) {
+          e.target.parentElement.parentElement.remove();
+          console.log(e.target.parentElement.parentElement.firstElementChild.textContent)
+          member1.value = e.target.parentElement.parentElement.firstElementChild.textContent
+          var index = team_member.indexOf(e.target.parentElement.parentElement.firstElementChild.textContent);
+          if (index > -1) {
+            team_member.splice(index, 1);
+          }
+  
+      }
+  
+  }
+}
+
+
+// The end for group reception
+
+// Storing and sending values from the homepage to the group page
+const group = document.querySelector(".group")
+group.addEventListener('click', grouppage)
+function grouppage() {
+    console.log(team_member)
+    var para = new URLSearchParams()
+    para.append("groupName", groupName.value);
+    para.append("team_member", JSON.stringify(team_member))
+    for (var value of para.values()) {
+      console.log(value)
+    }
+    location.href = "./group.html?" + para.toString();
+}
+
+// End for the storing and sending values to the group page
 
 
 // Statistics Page
