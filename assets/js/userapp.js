@@ -1,3 +1,6 @@
+// Exporting the database to allow access
+import {db} from './indexDB.js';
+
 // On Document load 
 document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem("id") == "1") {
@@ -6,7 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (localStorage.getItem("id") == "2") {
         swapper2()
     }
-
+    if (localStorage.getItem("id") == "3") {
+        swapper3()
+    }
+    if (localStorage.getItem("id") == "4") {
+    swapper4()
+    }
+    expenseGetData1();
 });
 // Ui Variables For Expense and Income Block
 var click1 = document.querySelector(".click1")
@@ -160,6 +169,42 @@ function increment1() {
 
 // Statistics Page
 
+//  variables for swapping between the daily weekly and monthly tabs
+var tab1 = document.querySelector(".tab1")
+var tab2 = document.querySelector(".tab2")
+var tab3 = document.querySelector(".tab3")
+var stat1 = document.querySelector(".stat1")
+var stat2 = document.querySelector(".stat2")
+var stat3 = document.querySelector(".stat3")
+
+// Event listeners for the tabs indicated above
+tab1.addEventListener('click', swappers1)
+tab2.addEventListener('click', swappers2)
+tab3.addEventListener('click', swappers3)
+
+// Functions for the swapping tabs in the statistics page
+function swappers1() {
+    stat1.classList.remove("blocka");
+    stat2.classList.add("blocka")
+    stat3.classList.add("blocka")
+    expenseGetData1()
+    console.log("successful3")
+  }
+  function swappers2() {
+    stat2.classList.remove("blocka");
+    stat1.classList.add("blocka")
+    stat3.classList.add("blocka")
+    expenseGetData2()
+    console.log("successful3")
+  }
+  function swappers3() {
+    stat3.classList.remove("blocka");
+    stat1.classList.add("blocka")
+    stat2.classList.add("blocka")
+    expenseGetData3()
+    console.log("successful3")
+  }
+  
 
 // Getting random colors for the pie chart
 function getRandomColor() {
