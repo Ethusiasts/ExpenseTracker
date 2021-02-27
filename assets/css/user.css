@@ -41,7 +41,6 @@ body {
   padding: 0;
 }
 .block1 .new-entry {
-  /* background-color: black; */
   background: #f3f4f6;
   border: 1px solid pink;
   border-radius: 3px;
@@ -54,7 +53,6 @@ body {
 }
 
 .block2 .new-entry {
-  /* background-color: black; */
   background: #f3f4f6;
   border: 1px solid lightgreen;
   border-radius: 3px;
@@ -66,13 +64,11 @@ body {
   padding: 0.5rem;
 }
 .block4 .new-entry {
-  /* background-color: black; */
   background: #f3f4f6;
   border: 1px solid lightgreen;
   border-radius: 3px;
   padding-bottom: 1rem;
   margin-bottom: 1rem;
-  /* height: 40vh; */
 }
 .block4 .entry-title {
   font-size: 1.1rem;
@@ -101,7 +97,6 @@ body {
   color: #a5aaad;
 }
 .navbar__left > a {
-  /* margin-right: 38px; */
   text-decoration: none;
   color: #a5aaad;
   font-size: 15px;
@@ -268,7 +263,6 @@ main {
 
 .axis path, .axis line {
   fill: none;
-  /*stroke: #fff;*/
   shape-rendering: crispEdges;
 }
 path {
@@ -277,8 +271,6 @@ path {
   fill: none;
 }
 .expincswap {
-  /* background-color: lightgrey; */
-  /* border: solid brown 0.1rem; */
   padding-top: 7rem;
   font-size: 1.5rem;
   letter-spacing: 2;

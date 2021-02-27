@@ -64,7 +64,7 @@ function swapper4() {
   block4.classList.remove("blocka");
   block1.classList.add("blocka")
   block2.classList.add("blocka")
-  block3.classList.add("blocka")
+  block3.classList.add("b  /*stroke: #fff;*/locka")
   console.log("successful4")
   localStorage.setItem("id", "4")
 }
