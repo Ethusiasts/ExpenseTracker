@@ -149,9 +149,10 @@ function createExpense (){
         date: date1.value,
         time: time1.value
     });
-    // updateData( db.expense, wrap,category1.value, expense_type1.value, amount1.value, date1.value, time1.value)
-    category1.value = expense_type1.value = amount1.value = date1.value = time1.value = ""
-    expenseLoader();
+   
+  // updateData( db.expense, wrap,category1.value, expense_type1.value, amount1.value, date1.value, time1.value)
+  category1.value = expense_type1.value = amount1.value = date1.value = time1.value = ""
+  expenseLoader();
 }
 
 //defining create income function
