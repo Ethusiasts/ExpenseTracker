@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     incomeLoader();
 })
 
+
 // defining expense loader function
 
 function expenseLoader(){
