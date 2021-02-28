@@ -168,9 +168,7 @@ function createIncome(){
 
     category2.value = income_type2.value = amount2.value = date2.value = time2.value = ""
     incomeLoader();
-    // updateData( db.income, acord1, wrap)
-    // updateData( db.income, acord2, wrap)
-    // updateData( db.income, acord3, wrap)
+   
 }
 
 
