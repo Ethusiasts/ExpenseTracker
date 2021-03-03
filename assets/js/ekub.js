@@ -199,5 +199,59 @@ function saveRecord() {
 }
 function nextnavigation(){
     ikubExpense()
+    let obj1 = new Array()
+    db.ikub_expense.each(entity => {
+    obj1.push(entity)}).then(()=>{
+        recordsb.innerHTML = ""
+        obj1.forEach(element => {
+            var number = document.createElement("div")
+            var tempo = document.createElement("div")
+            tempo.classList.add("container")
+            tempo.classList.add("tempo")
+            number.innerHTML = `Round ${w}`
+            tempo.innerHTML =`
+            <div class="row row2">
+                        <div class="col-1">NO</div>
+                        <div class="col-3">Team Members</div>
+                        <div class="col-3">Paid Due</div>
+                        <div class="col-2">Punishment</div>
+                        <div class="col-2">Won Lottery</div>
+            </div>`
+            element.info.forEach(element1 => {
+                tempo.innerHTML += `
+                <div class="row">
+                    <div class="col-1">${y}</div>
+                    <div class="col-3">${element1[1]}</div>
+                    <div class="col-3">
+                        <select class="form-select form-select-xs mb-3 checkd${w}${y}" aria-label=".form-select-xs example">
+                            <option selected>Checked</option>
+                            <option value="1">Unchecked</option>
+                        </select>
+                    </div>
+                    <div class="col-2">
+                        <select class="form-select form-select-xs mb-3 checke${w}${y}" aria-label=".form-select-xs example">
+                            <option selected>Checked</option>
+                            <option value="1">Unchecked</option>
+                        </select>
+                    </div>
+                    <div class="col-2">
+                        <select class="form-select form-select-xs mb-3 checkf${w}${y}" aria-label=".form-select-xs example">
+                            <option selected>Checked</option>
+                            <option value="1">Unchecked</option>
+                        </select>
+                    </div>
+                </div>
+                `
+
+                y++
+                // w++
+            });
+            w++
+            recordsb.appendChild(number)
+            recordsb.appendChild(tempo)
+            y = 1
+
+        });
+    })
 
 }
