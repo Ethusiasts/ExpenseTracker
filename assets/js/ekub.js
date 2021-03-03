@@ -148,3 +148,29 @@ team_member2.forEach(element => {
     `
 });
 }
+
+// Insert To Ikub 
+function insert() {
+    array2 = []
+    for (let i = 0; i < team_member2.length; i++) {
+        checkbox1 = document.querySelector(`.checka${i+1}`);
+        checkbox2 = document.querySelector(`.checkb${i+1}`);
+        checkbox3 = document.querySelector(`.checkc${i+1}`);
+        console.log(checkbox1)
+        console.log(i)
+
+        var datenow = new Date();
+        array1.push(i)
+        array1.push(team_member2[i])
+        array1.push(checkbox1.options[checkbox1.selectedIndex].text)
+        array1.push(checkbox2.options[checkbox2.selectedIndex].text)
+        array1.push(checkbox3.options[checkbox3.selectedIndex].text)
+        array1.push(datenow)
+        array2.push(array1)
+        array1 = []
+        checkbox1.selectedIndex = 0;
+        checkbox2.selectedIndex = 0;
+        checkbox3.selectedIndex = 0;        
+    }
+
+}
