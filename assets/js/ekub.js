@@ -92,3 +92,59 @@ var counter = setInterval(function() {
         document.getElementById("end").innerHTML = "TIME UP!!";
     }
     }, 1000);
+
+
+
+
+// Document On load
+document.addEventListener('DOMContentLoaded', () => {
+    nextnavigation()
+    });
+
+//  Ikub page
+const recordsa = document.querySelector(".recordsa")
+const recordsb = document.querySelector(".recordsb")
+
+var x = 0;
+var z = 1;
+
+var share = "Expected Payment";
+var array1 = new Array();
+var array2 = new Array();
+var array3 = new Array();
+var array4 = new Array();
+var checkbox1
+var checkbox2
+var checkbox3
+listera()
+
+// List Contents
+function listera() {
+team_member2.forEach(element => {
+    x++
+    recordsa.innerHTML += `
+    <div class="row">
+        <div class="col-1">${x}</div>
+        <div class="col-3">${element}</div>
+        <div class="col-3">
+            <select class="form-select form-select-xs mb-3 checka${x}" aria-label=".form-select-xs example">
+                <option selected>Checked</option>
+                <option value="1">Unchecked</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <select class="form-select form-select-xs mb-3 checkb${x}" aria-label=".form-select-xs example">
+                <option selected>Checked</option>
+                <option value="1">Unchecked</option>
+            </select>
+        </div>
+        <div class="col-2">
+            <select class="form-select form-select-xs mb-3 checkc${x}" aria-label=".form-select-xs example">
+                <option selected>Checked</option>
+                <option value="1">Unchecked</option>
+            </select>
+        </div>
+    </div>
+    `
+});
+}
