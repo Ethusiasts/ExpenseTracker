@@ -252,6 +252,28 @@ function nextnavigation(){
             y = 1
 
         });
-    })
-
+    }).then(()=> {
+        var h = 1
+        obj1.forEach(element2 => {
+            var f = 1
+            element2.info.forEach(element3 => {
+                checkbox1 = document.querySelector(`.checkd${h}${f}`);
+                checkbox2 = document.querySelector(`.checke${h}${f}`);
+                checkbox3 = document.querySelector(`.checkf${h}${f}`);
+                if (element3[2] == "Unchecked"){
+                    checkbox1.value = "1"
+                }
+                if (element3[3] == "Unchecked"){
+                    checkbox2.value = "1"
+                }
+                if (element3[4] == "Unchecked"){
+                    checkbox3.value = "1"
+                }
+                
+                f++
+            });
+        h++ 
+        });
+})
+w = 1
 }
