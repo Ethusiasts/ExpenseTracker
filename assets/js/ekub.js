@@ -184,3 +184,20 @@ function ikubExpense(){
         info: array2,
     });
     }
+
+
+//  Navigating group pages
+var groupRecordSaver = document.querySelector(".grouprecordsaver")
+groupRecordSaver.addEventListener('click', saveRecord)
+
+
+var w = 1
+var y = 1;
+function saveRecord() {
+    insert()
+    nextnavigation()
+}
+function nextnavigation(){
+    ikubExpense()
+
+}
