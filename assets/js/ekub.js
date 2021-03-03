@@ -156,8 +156,6 @@ function insert() {
         checkbox1 = document.querySelector(`.checka${i+1}`);
         checkbox2 = document.querySelector(`.checkb${i+1}`);
         checkbox3 = document.querySelector(`.checkc${i+1}`);
-        console.log(checkbox1)
-        console.log(i)
 
         var datenow = new Date();
         array1.push(i)
@@ -174,3 +172,15 @@ function insert() {
     }
 
 }
+// Send to Database
+function ikubExpense(){
+    insertrecord(db.ikub_expense, {
+        ikubname: ikubName,
+        team_member: team_member2,
+        begin_date: begin_date,
+        interval: interval,
+        amount_per_round: amount_per_round,
+        punishment_fee: punishment_fee,
+        info: array2,
+    });
+    }
