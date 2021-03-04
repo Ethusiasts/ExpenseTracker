@@ -113,6 +113,7 @@ function groupExpense(){
 // variables for the group page
 var groupCategory1 = document.querySelector(".groupCategory1")
 var groupCategory2 = document.querySelector(".groupCategory2")
+var groupRecordViewer = document.querySelector(".grouprecordviewer")
 var groupRecordSaver = document.querySelector(".grouprecordsaver")
 var groupRecordSaver2 = document.querySelector(".grouprecordsaver2")
 var blockcategory = document.querySelector(".blockcategory")

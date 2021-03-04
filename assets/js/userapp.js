@@ -788,7 +788,7 @@ function expenseGetData3(){
 }
 
 
-ar chartData4;
+var chartData4;
 var chartOptions4;
 function expenseGetData4(){
   var track1 = true
@@ -796,7 +796,7 @@ function expenseGetData4(){
   let obj1 = new Array()
   db.income.each(entity => {
   obj1.push(entity)}).then(()=>{
-    var today = new Date().getDay()
+    var today = new Date()
     chartOptions4 = [{
       "captions": [{}],
       "color": [{}],
@@ -806,10 +806,7 @@ function expenseGetData4(){
       }]
     chartData4 = []
       for (let i =0; i < obj1.length; i++){
-          console.log("I hate you")
           var str = obj1[i].date.slice(8, 10);
-          console.log(str)
-          console.log("25")
           track2.forEach(element => {
             if (obj1[i].category.toUpperCase() == element) {
               track1 = false
@@ -830,9 +827,8 @@ function expenseGetData4(){
               }
             }
 
-            if(str === "25" && track1){
+            if(str === today.toString().slice(8, 10) && track1){
               var cat = obj1[i].category.toUpperCase()
-              console.log(cat)
               chartOptions4[0]["captions"][0]["SAKS" + i] = cat
               chartOptions4[0]["color"][0]["SAKS" + i] = getRandomColor()
               console.log(chartOptions1)
@@ -842,7 +838,6 @@ function expenseGetData4(){
                 object1["Price"] = parseInt(obj1[i].amount)
                 chartData4.push(object1)
                 track2.push(cat)
-              console.log(chartData4)
               track1 = true
             }
       }
@@ -864,7 +859,16 @@ function expenseGetData5(){
   let obj1 = new Array()
   db.income.each(entity => {
   obj1.push(entity)}).then(()=>{
-    var today = new Date().getDay()
+    var today = new Array()
+    for (let index2 = 0; index2 < 3; index2++) {
+      var o = new Date().toString().slice(8,10)
+      var p = parseInt(new Date().toString().slice(9,10))
+      today.push(new Date().toString().slice(8,9) + (p - index2))
+      // if(new Date().toString().slice(8,9) + (p - index2) == "00"){
+
+      // }
+      
+    }
     chartOptions5 = [{
       "captions": [{}],
       "color": [{}],
@@ -874,10 +878,7 @@ function expenseGetData5(){
       }]
     chartData5 = []
       for (let i =0; i < obj1.length; i++){
-          console.log("I hate you")
           var str = obj1[i].date.slice(8, 10);
-          console.log(str)
-          console.log("25")
           track2.forEach(element => {
             if (obj1[i].category.toUpperCase() == element) {
               track1 = false
@@ -898,19 +899,16 @@ function expenseGetData5(){
               }
             }
 
-            if(str === "25" && track1){
+            if(today.includes(str) && track1){
               var cat = obj1[i].category.toUpperCase()
-              console.log(cat)
               chartOptions5[0]["captions"][0]["SAKS" + i] = cat
               chartOptions5[0]["color"][0]["SAKS" + i] = getRandomColor()
-              console.log(chartOptions1)
                 var object1 = {}
                 object1["Catagory"] = "SAKS" + i
                 object1["Type"] = obj1[i].income_type
                 object1["Price"] = parseInt(obj1[i].amount)
                 chartData5.push(object1)
                 track2.push(cat)
-              console.log(chartData5)
               track1 = true
             }
       }
@@ -932,7 +930,12 @@ function expenseGetData6(){
   let obj1 = new Array()
   db.income.each(entity => {
   obj1.push(entity)}).then(()=>{
-    var today = new Date().getDay()
+    var today = new Array()
+    for (let index2 = 0; index2 < 3; index2++) {
+      var o = new Date().toString().slice(8,10)
+      var p = parseInt(new Date().toString().slice(9,10))
+      today.push(new Date().toString().slice(8,9) + (p - index2))
+    }
     chartOptions6 = [{
       "captions": [{}],
       "color": [{}],
@@ -942,10 +945,7 @@ function expenseGetData6(){
       }]
     chartData6 = []
       for (let i =0; i < obj1.length; i++){
-          console.log("I hate you")
           var str = obj1[i].date.slice(8, 10);
-          console.log(str)
-          console.log("25")
           track2.forEach(element => {
             if (obj1[i].category.toUpperCase() == element) {
               track1 = false
@@ -966,19 +966,16 @@ function expenseGetData6(){
               }
             }
 
-            if(str === "25" && track1){
+            if(today.includes(str) && track1){
               var cat = obj1[i].category.toUpperCase()
-              console.log(cat)
               chartOptions6[0]["captions"][0]["SAKS" + i] = cat
               chartOptions6[0]["color"][0]["SAKS" + i] = getRandomColor()
-              console.log(chartOptions1)
                 var object1 = {}
                 object1["Catagory"] = "SAKS" + i
                 object1["Type"] = obj1[i].income_type
                 object1["Price"] = parseInt(obj1[i].amount)
                 chartData6.push(object1)
                 track2.push(cat)
-              console.log(chartData6)
               track1 = true
             }
       }
