@@ -44,7 +44,7 @@ body {
   background: #f3f4f6;
   border: 1px solid pink;
   border-radius: 3px;
-  height: 30vh;
+  padding: 2rem;
 }
 .block1 .entry-title {
   font-size: 1.1rem;
@@ -56,7 +56,7 @@ body {
   background: #f3f4f6;
   border: 1px solid lightgreen;
   border-radius: 3px;
-  height: 30vh;
+  padding: 2rem;
 }
 .block2 .entry-title {
   font-size: 1.1rem;
@@ -88,6 +88,9 @@ body {
   justify-content: space-between;
   padding: 0 30px 0 30px;
   border-bottom: 1px solid lightgrey;
+}
+.nav_icon {
+  display: none;
 }
 .nav_item {
   display: none;
@@ -130,8 +133,16 @@ main {
 .main__container {
   padding: 20px 50px;
 }
+.recordsa .row1 {
+  padding-bottom: 1.5rem;
+}
+.recordsb .row2 {
+  padding-bottom: 1.5rem;
+}
+
+
 #sidebar {
-  background: #020509;
+  background: #253F49;
   grid-area: sidebar;
   overflow-y: auto;
   padding: 20px;
@@ -186,7 +197,7 @@ main {
 
 .sidebar__menu > h2 > a {
   text-decoration: none;
-  color: #3ea175;
+  color: #fed136;
 }
 .sidebar__link {
   color: #f3f4f6;
@@ -196,10 +207,10 @@ main {
 }
 .active_menu_link {
   background: rgba(62, 161, 117, 0.3);
-  color: #3ea175;
+  color: #fed136;
 }
 .active_menu_link a {
-  color: #3ea175 !important;
+  color: #fed136 !important;
 }
 .sidebar__link > a {
   text-decoration: none;
@@ -256,6 +267,21 @@ main {
   font: 10px sans-serif;
   text-anchor: end;
 }
+#chart4 text {
+  fill: black;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+#chart5 text {
+  fill: black;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+#chart6 text {
+  fill: black;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
 
 .axis text {
   font: 10px sans-serif;
@@ -302,7 +328,7 @@ button:focus:not(:focus-visible) {
   outline: 0;
 }
 .accordion-button:not(.collapsed) {
-  color: green;
+  color: #3ea175;
   background-color: black;
 }
 .sidebar__menu .accordion-button {
@@ -334,3 +360,20 @@ button:focus:not(:focus-visible) {
   background-color: black;
 }
 /* the end */
+
+
+.recordsa {
+  /* background-color: black; */
+  background: #f3f4f6;
+  border: 1px solid lightgreen;
+  border-radius: 3px;
+  padding: 2rem;
+}
+.tempo {
+  /* background-color: black; */
+  background: #f3f4f6;
+  border: 1px solid lightgreen;
+  border-radius: 3px;
+  padding: 2rem;
+  margin: 1rem 0;
+}

@@ -12,35 +12,24 @@
 <body>
     <div class="container-fluid container-whole">
         <nav class="navbar">
-            <div class="nav-icon" onclick="togglesidebar()">
+            <div class="nav_icon" onclick="togglesidebar()">
                 <i class="fa fa-bars"></i>
             </div>
             <div class="navbar__left">
                 <a href="#">Group Page</a>
-            </div>
-            <div class="navbar__right">
-                <a href="#">
-                    <i class="fa fa-search"></i>
-                </a>
-                <a href="#">
-                    <i class="fa fa-clock-o"></i>
-                </a>
-                <a href="#">
-                    <img width="30" src="assets/images/avatar-svgrepo-com.svg" alt="">
-                </a>
             </div>
         </nav>
 
         <main class="container-fluid px-3 pt-3">
             <div class="container blockcategory">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-sm-12 col-lg-6">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control groupCategory1" placeholder="Category" aria-label="Username">
                         </div>
                     </div>
-                    <div class="col"></div>
-                    <div class="col-4">
+                    <div class="col-sm col-lg"></div>
+                    <div class="col-sm-12 col-lg-4">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control total1" placeholder="Total" aria-label="Username">
                         </div>
@@ -57,9 +46,12 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col-sm-0 col-lg-6">
                     </div>
-                    <div class="col-3">
+                    <div class="col-sm-6 col-lg-3">
+                        <button type="button" class="btn btn-success grouprecordviewer">View Record</button>
+                    </div>
+                    <div class="col-sm-6 col-lg-3">
                         <button type="button" class="btn btn-success grouprecordsaver">Save Record</button>
                     </div>
                 </div>
@@ -136,39 +128,22 @@
         <div id="sidebar">
             <div class="sidebar__title">
                 <div class="sidebar__img">
-                    <img src="assets/images/lion.jpg" alt="">
+                    <img src="assets/images/dollar.png" alt="">
                 </div>
                 <i class="fa fa-lines" id="sidebaricon" onclick="closeSidebar"></i>
             </div>
 
             <div class="sidebar__menu">
                 <div class="sidebar__link active_menu_link">
-                    <i class="fas fa-chart-line"></i>
-                    <a href="#">TRACKBOARD</a>
+                    <i class="fas fa-chart-pie fa"></i>
+                    <a href="#">EXPENSEBOARD</a>
                 </div>
                 <!-- <button>EXPENSES</button> -->
                 <h2><a href="#" class="click1">EXPENSES</a></h2>
                 <h2><a href="#" class="click2">INCOMES</a></h2>
                 <h2><a href="#" class="click3">STATISTICS</a></h2>
+                <h2><a href="#" class="click4">GROUP</a></h2>
                 <div class="main_container">
-                    <div class="accordion accordion-flush" id="accordionFlushExample">
-                        <div class="accordion-item">
-                          <h2 class="accordion-header" id="flush-headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne1" aria-expanded="false" aria-controls="flush-collapseOne">
-                              GROUPS
-                            </button>
-                          </h2>
-                          <div id="flush-collapseOne1" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">GROUP1</div>
-                          </div>
-                          <div id="flush-collapseOne1" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">GROUP2</div>
-                          </div>
-                          <div id="flush-collapseOne1" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">GROUP3</div>
-                          </div>
-                        </div>
-                    </div>
                 </div>
         </div>
 

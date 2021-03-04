@@ -1,4 +1,5 @@
 // Exporting the database to allow access
+import {insertrecord,} from './module.js';
 import {db} from './indexDB.js';
 
 // On Document load 
@@ -16,7 +17,171 @@ document.addEventListener('DOMContentLoaded', () => {
     swapper4()
     }
     expenseGetData1();
+    expenseGetData4();
+    expenseLoader();
+    incomeLoader();
 });
+
+// Defining UI variables
+const category1 = document.querySelector(".category1")
+const expense_type1 = document.querySelector(".expense_type1")
+const amount1 = document.querySelector(".amount1")
+const date1 = document.querySelector(".date1")
+const time1 = document.querySelector(".time1")
+const button1 = document.querySelector(".button1")
+
+
+const category2 = document.querySelector(".category2")
+const income_type2 = document.querySelector(".income_type2")
+const amount2 = document.querySelector(".amount2")
+const date2 = document.querySelector(".date2")
+const time2 = document.querySelector(".time2")
+const button2 = document.querySelector(".button2")
+
+const wrap = document.querySelector(".wrap")
+const wrapIncome = document.querySelector(".wrapIncome")
+
+
+// Action Listners
+button1.addEventListener('click',createExpense);
+button2.addEventListener('click',createIncome);
+
+//Accepting username from index.html
+var para = new URLSearchParams(window.location.search);
+
+var nameLogin = para.get("nameLoginU")
+var nameSign = para.get("nameSignUp")
+
+// Functions
+
+function expenseLoader(){
+  let obj1 = new Array()
+  let visited = {};
+  db.expense.each(entity => {
+  obj1.push(entity)}).then(()=>{
+      wrap.innerHTML = ""
+      for (let i =0; i < obj1.length; i++){
+          if(obj1[i].userName === nameSign || nameLogin){
+              if(obj1[i].category in visited){
+                  const accord = document.querySelector('.acord'+ `${visited[obj1[i].category]}`);
+                  accord.innerHTML += `
+                  <div class="row"> <div class="col-1">${i}</div> <div class="col-3">${obj1[i].income_type || obj1[i].expense_type}</div> <div class="col-2">${obj1[i].amount}</div> <div class="col-2">${obj1[i].date}</div> <div class="col-2">${obj1[i].time}</div> <div class="col-1"><i class="fas fa-edit" style="color: lightgreen;"></i></div><div class="col-1"><i class="fas fa-trash-alt" style="color: red;"></i></div> </div>             
+                  `
+                  visited[`${obj1[i].category}`] = i;
+              }
+              else{
+                  var wrapper = document.createElement("div")
+                  wrapper.innerHTML = 
+                  `
+                  <div class="accordion-item">
+                          <h2 class="accordion-header" id="flush-heading${i}">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${i}" aria-expanded="false" aria-controls="flush-collapse${i}">
+                              ${obj1[i].category}
+                              </button>
+                          </h2>
+                          <div id="flush-collapse${i}" class="accordion-collapse collapse " aria-labelledby="flush-heading${i}" data-bs-parent="#accordionFlushExample">
+                              <div class="accordion-body acord${i}"> 
+                                  <div class="row"> <div class="col-1">No.</div> <div class="col-3">Expense_type</div> <div class="col-2">Amount</div> <div class="col-2">Date</div> <div class="col-2">Time</div> <div class="col-1">Edit</div><div class="col-1">Delete</div> </div>
+                                  <div class="row"> <div class="col-1">${obj1[i].id}</div> <div class="col-3">${obj1[i].income_type || obj1[i].expense_type}</div> <div class="col-2">${obj1[i].amount}</div> <div class="col-2">${obj1[i].date}</div> <div class="col-2">${obj1[i].time}</div> <div class="col-1"><i class="fas fa-edit" style="color: lightgreen;"></i></div><div class="col-1"><i class="fas fa-trash-alt" style="color: red;"></i></div> </div>
+                              </div>
+                              
+                          </div>
+                  </div>
+                  `
+                  wrap.appendChild(wrapper)
+                  visited[`${obj1[i].category}`] = i;
+              }
+              
+          }
+      }
+})
+
+}
+function incomeLoader(){
+  let obj1 = new Array()
+  let visited = {};
+  db.income.each(entity => {
+  obj1.push(entity)}).then(()=>{
+      wrapIncome.innerHTML = ""
+      for (let i =0; i < obj1.length; i++){
+          if(obj1[i].userName === nameSign || nameLogin){
+              if(obj1[i].category in visited){
+                  const accord = document.querySelector('.acord'+ `${visited[obj1[i].category]}`);
+                  accord.innerHTML += `
+                  <div class="row"> <div class="col-1">${obj1[i].id}</div> <div class="col-3">${obj1[i].income_type || obj1[i].expense_type}</div> <div class="col-2">${obj1[i].amount}</div> <div class="col-2">${obj1[i].date}</div> <div class="col-2">${obj1[i].time}</div> <div class="col-1"><i class="fas fa-edit" style="color: lightgreen;"></i></div><div class="col-1"><i class="fas fa-trash-alt" style="color: red;"></i></div> </div>             
+                  `
+                  visited[`${obj1[i].category}`] = i;
+              }
+              else{
+                  var wrapper = document.createElement("div")
+                  wrapper.innerHTML = 
+                  `
+                  <div class="accordion-item">
+                          <h2 class="accordion-header" id="flush-heading${i}">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${i}" aria-expanded="false" aria-controls="flush-collapse${i}">
+                              ${obj1[i].category}
+                              </button>
+                          </h2>
+                          <div id="flush-collapse${i}" class="accordion-collapse collapse " aria-labelledby="flush-heading${i}" data-bs-parent="#accordionFlushExample">
+                              <div class="accordion-body acord${i}"> 
+                                  <div class="row"> <div class="col-1">No.</div> <div class="col-3">Expense_type</div> <div class="col-2">Amount</div> <div class="col-2">Date</div> <div class="col-2">Time</div> <div class="col-1">Edit</div><div class="col-1">Delete</div> </div>
+                                  <div class="row"> <div class="col-1">${obj1[i].id}</div> <div class="col-3">${obj1[i].income_type || obj1[i].expense_type}</div> <div class="col-2">${obj1[i].amount}</div> <div class="col-2">${obj1[i].date}</div> <div class="col-2">${obj1[i].time}</div> <div class="col-1"><i class="fas fa-edit" style="color: lightgreen;"></i></div><div class="col-1"><i class="fas fa-trash-alt" style="color: red;"></i></div> </div>
+                              </div>
+                              
+                          </div>
+                  </div>
+                  `
+                  console.log(wrapper)
+                  wrapIncome.appendChild(wrapper)
+                  visited[`${obj1[i].category}`] = i;
+              }
+              
+          }
+      }
+})
+}
+function createExpense (){
+  insertrecord(db.expense, {
+      userName: nameSign || nameLogin,
+      category: category1.value,
+      expense_type: expense_type1.value,
+      amount: amount1.value,
+      date: date1.value,
+      time: time1.value
+  });
+  category1.value = expense_type1.value = amount1.value = date1.value = time1.value = ""
+  expenseLoader();
+}
+function createIncome(){
+  insertrecord(db.income, {
+      userName: nameSign || nameLogin,
+      category: category2.value,
+      income_type: income_type2.value,
+      amount: amount2.value,
+      date: date2.value,
+      time: time2.value
+  });
+
+  category2.value = income_type2.value = amount2.value = date2.value = time2.value = ""
+  incomeLoader();
+}
+// the end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Ui Variables For Expense and Income Block
 var click1 = document.querySelector(".click1")
 var click2 = document.querySelector(".click2")
@@ -27,7 +192,7 @@ var block2 = document.querySelector(".block2")
 var block3 = document.querySelector(".block3")
 var block4 = document.querySelector(".block4")
 
-// Event Listner for Bottons
+// Event Listner for Buttons
 click1.addEventListener('click', swapper1)
 click2.addEventListener('click', swapper2)
 click3.addEventListener('click', swapper3)
@@ -42,6 +207,7 @@ function swapper1() {
     block4.classList.add("blocka")
     console.log("successful1")
     localStorage.setItem("id", "1")
+    expenseLoader()
   // boxx1.children.style.transform = "translate()";
 }
 function swapper2() {
@@ -51,6 +217,7 @@ function swapper2() {
     block4.classList.add("blocka")
     console.log("successful2")
     localStorage.setItem("id", "2")
+    incomeLoader()
 }
 function swapper3() {
   block3.classList.remove("blocka");
@@ -58,13 +225,19 @@ function swapper3() {
   block2.classList.add("blocka")
   block4.classList.add("blocka")
   console.log("successful3")
+  expenseGetData1()
+  expenseGetData2()
+  expenseGetData3()
+  expenseGetData4()
+  expenseGetData5()
+  expenseGetData6()
   localStorage.setItem("id", "3")
 }
 function swapper4() {
   block4.classList.remove("blocka");
   block1.classList.add("blocka")
   block2.classList.add("blocka")
-  block3.classList.add("b  /*stroke: #fff;*/locka")
+  block3.classList.add("blocka")
   console.log("successful4")
   localStorage.setItem("id", "4")
 }
@@ -82,8 +255,7 @@ var plus4 = document.querySelector(".plus4")
 var minus4 = document.querySelector(".minus4")
 var plus5 = document.querySelector(".plus5")
 var minus5 = document.querySelector(".minus5")
-var amount1 = document.querySelector(".amount1")
-var amount2 = document.querySelector(".amount2")
+var days1 = document.querySelector(".days1")
 
 // Increment value event listeners
 
@@ -120,16 +292,16 @@ function increment1() {
     days1.value = parseFloat(days1.value) + 1.00
   }
   function increment4() {
-    if (amntperrnd.value == "") {
-      amntperrnd.value = y
+    if (amount_per_round.value == "") {
+      amount_per_round.value = y
     }
-    amntperrnd.value = parseFloat(amntperrnd.value) + 1.00
+    amount_per_round.value = parseFloat(amount_per_round.value) + 1.00
   }
   function increment5() {
-    if (pnshmntfee.value == "") {
-      pnshmntfee.value = y
+    if (punishment_fee.value == "") {
+      punishment_fee.value = y
     }
-    pnshmntfee.value = parseFloat(pnshmntfee.value) + 1.00
+    punishment_fee.value = parseFloat(punishment_fee.value) + 1.00
   }
   function decrement1() {
     if (amount1.value == "") {
@@ -150,16 +322,16 @@ function increment1() {
     days1.value = parseFloat(days1.value) - 1.00
   }
   function decrement4() {
-    if (amntperrnd.value == "") {
-      amntperrnd.value = y
+    if (amount_per_round.value == "") {
+      amount_per_round.value = y
     }
-    amntperrnd.value = parseFloat(amntperrnd.value) - 1.00
+    amount_per_round.value = parseFloat(amount_per_round.value) - 1.00
   }
   function decrement5() {
-    if (pnshmntfee.value == "") {
-      pnshmntfee.value = y
+    if (punishment_fee.value == "") {
+      punishment_fee.value = y
     }
-    pnshmntfee.value = parseFloat(pnshmntfee.value) - 1.00
+    punishment_fee.value = parseFloat(punishment_fee.value) - 1.00
   }
 
   
@@ -169,14 +341,25 @@ function increment1() {
 
 // variables for group and ikub reception
 var team_member = new Array();
+var team_member2 = new Array();
 var add1 = document.querySelector(".add1")
+var add2 = document.querySelector(".add2")
 var groupName = document.querySelector(".groupName")
+var ikubName = document.querySelector(".ikubName")
 var member1 = document.querySelector(".member1")
+var member2 = document.querySelector(".member2")
 var members1 = document.querySelector(".members1")
+var members2 = document.querySelector(".members2")
+var begindate = document.querySelector(".begindate")
+var interval = document.querySelector(".days1")
+var amount_per_round = document.querySelector(".amntperrnd")
+var punishment_fee = document.querySelector(".pnshmntfee")
 
 // Event listeners for the group reception
 add1.addEventListener('click', addMember1)
+add2.addEventListener('click', addMember2)
 members1.addEventListener('click', removeMember1)
+members2.addEventListener('click', removeMember2)
 
 // Functions for the group reception
 function addMember1() {
@@ -189,6 +372,18 @@ function addMember1() {
     member1.value = ""
 }
 
+function addMember2() {
+  
+
+  members2.innerHTML += `
+
+  <li class="list-group-item"><p style = "display: inline">${member2.value}</p><a href="#" class="edit-item secondary-content" style="color : red;"><i class="fas fa-edit" style="color: lightgreen;"></i></a>        <a href="#" class="delete-item secondary-content" style="color : red;"><i class="fa fa-remove"></i></a> </li>
+  
+  `
+  team_member2.push(member2.value)
+  console.log(team_member2)
+  member2.value = ""
+}
   function removeMember1(e) {
     if (e.target.parentElement.classList.contains('delete-item')) {
         if (confirm('Are You Sure to delete?')) {
@@ -219,15 +414,47 @@ function addMember1() {
   }
 }
 
+function removeMember2(e) {
+  if (e.target.parentElement.classList.contains('delete-item')) {
+      if (confirm('Are You Sure to delete?')) {
+        var index = team_member2.indexOf(e.target.parentElement.parentElement.firstElementChild.textContent);
+        if (index > -1) {
+          team_member2.splice(index, 1);
+        }
+          e.target.parentElement.parentElement.remove();
+      }
+
+  }
+
+  if (e.target.parentElement.classList.contains('edit-item')) {
+    if (confirm('Are You Sure to Edit?')) {
+        e.target.parentElement.parentElement.remove();
+        console.log(e.target.parentElement.parentElement.firstElementChild.textContent)
+        member2.value = e.target.parentElement.parentElement.firstElementChild.textContent
+          var index = team_member2.indexOf(e.target.parentElement.parentElement.firstElementChild.textContent);
+          if (index > -1) {
+            team_member2.splice(index, 1);
+          }
+
+        
+
+    }
+
+}
+}
+
 
 // The end for group reception
 
 // Storing and sending values from the homepage to the group page
 const group = document.querySelector(".group")
+const ikub = document.querySelector(".ikub")
 group.addEventListener('click', grouppage)
+ikub.addEventListener('click', ikubpage)
 function grouppage() {
     console.log(team_member)
     var para = new URLSearchParams()
+    para.append("userName", nameLogin || nameSign)
     para.append("groupName", groupName.value);
     para.append("team_member", JSON.stringify(team_member))
     for (var value of para.values()) {
@@ -235,7 +462,20 @@ function grouppage() {
     }
     location.href = "./group.html?" + para.toString();
 }
-
+function ikubpage() {
+  console.log(team_member2)
+  var para = new URLSearchParams()
+  para.append("ikubName", ikubName.value);
+  para.append("begin_date", begindate.value);
+  para.append("interval", interval.value);
+  para.append("amount_per_round", amount_per_round.value);
+  para.append("punishment_fee", punishment_fee.value);
+  para.append("team_member2", JSON.stringify(team_member2))
+  for (var value of para.values()) {
+    console.log(value)
+  }
+  location.href = "./ekub.html?" + para.toString();
+}
 // End for the storing and sending values to the group page
 
 
@@ -245,14 +485,32 @@ function grouppage() {
 var tab1 = document.querySelector(".tab1")
 var tab2 = document.querySelector(".tab2")
 var tab3 = document.querySelector(".tab3")
+var tab4 = document.querySelector(".tab4")
+var tab5 = document.querySelector(".tab5")
+var tab6 = document.querySelector(".tab6")
 var stat1 = document.querySelector(".stat1")
 var stat2 = document.querySelector(".stat2")
 var stat3 = document.querySelector(".stat3")
+var stat4 = document.querySelector(".stat4")
+var stat5 = document.querySelector(".stat5")
+var stat6 = document.querySelector(".stat6")
+
+var expswap = document.querySelector(".expswap")
+var incswap = document.querySelector(".incswap")
+var statblock1 = document.querySelector(".statblock1")
+var statblock2 = document.querySelector(".statblock2")
+
 
 // Event listeners for the tabs indicated above
 tab1.addEventListener('click', swappers1)
 tab2.addEventListener('click', swappers2)
 tab3.addEventListener('click', swappers3)
+tab4.addEventListener('click', swappers4)
+tab5.addEventListener('click', swappers5)
+tab6.addEventListener('click', swappers6)
+
+expswap.addEventListener('click', swapperb1)
+incswap.addEventListener('click', swapperb2)
 
 // Functions for the swapping tabs in the statistics page
 function swappers1() {
@@ -276,7 +534,40 @@ function swappers1() {
     expenseGetData3()
     console.log("successful3")
   }
+  function swappers4() {
+    stat4.classList.remove("blocka");
+    stat5.classList.add("blocka")
+    stat6.classList.add("blocka")
+    expenseGetData4()
+    console.log("successful3")
+  }
+  function swappers5() {
+    stat5.classList.remove("blocka");
+    stat4.classList.add("blocka")
+    stat6.classList.add("blocka")
+    expenseGetData5()
+    console.log("successful3")
+  }
+  function swappers6() {
+    stat6.classList.remove("blocka");
+    stat4.classList.add("blocka")
+    stat5.classList.add("blocka")
+    expenseGetData6()
+    console.log("successful3")
+  }
+  function swapperb1() {
+    statblock1.classList.remove("blocka");
+    statblock2.classList.add("blocka")
+    expenseGetData1()
+    console.log("successful5")
+  }
   
+  function swapperb2() {
+    statblock2.classList.remove("blocka");
+    statblock1.classList.add("blocka")
+    expenseGetData4()
+    console.log("successful6")
+  }
 
 // Getting random colors for the pie chart
 function getRandomColor() {
@@ -300,8 +591,7 @@ function expenseGetData1(){
   let obj1 = new Array()
   db.expense.each(entity => {
   obj1.push(entity)}).then(()=>{
-    var today = new Date().getDay()
-    console.log(obj1)
+    var today = new Date()
     chartOptions1 = [{
       "captions": [{}],
       "color": [{}],
@@ -311,15 +601,9 @@ function expenseGetData1(){
       }]
     chartData1 = []
       for (let i =0; i < obj1.length; i++){
-          console.log("I hate you")
           var str = obj1[i].date.slice(8, 10);
-          console.log(str)
-          console.log("25")
-          console.log(track2)
-          console.log(obj1[i].category.toUpperCase())
           track2.forEach(element => {
-            console.log(obj1[i].category.toUpperCase())
-            console.log(element)
+
             if (obj1[i].category.toUpperCase() == element) {
               track1 = false
               console.log(track2)
@@ -341,9 +625,8 @@ function expenseGetData1(){
             }
 
 
-            if(str === "25" && track1){
+            if(str === today.toString().slice(8, 10) && track1){
               var cat = obj1[i].category.toUpperCase()
-              console.log(cat)
               chartOptions1[0]["captions"][0]["SAKS" + i] = cat
               chartOptions1[0]["color"][0]["SAKS" + i] = getRandomColor()
               console.log(chartOptions1)
@@ -353,10 +636,8 @@ function expenseGetData1(){
                 object1["Price"] = parseInt(obj1[i].amount)
                 chartData1.push(object1)
                 track2.push(cat)
-              console.log(chartData1)
               track1 = true
             }
-            console.log(track2)
       }
 }).then(()=> {
   $(document).ready(function () {
@@ -377,7 +658,17 @@ function expenseGetData2(){
   let obj1 = new Array()
   db.expense.each(entity => {
   obj1.push(entity)}).then(()=>{
-    var today = new Date().getDay()
+    var today = new Array()
+    for (let index2 = 0; index2 < 3; index2++) {
+      var o = new Date().toString().slice(8,10)
+      var p = parseInt(new Date().toString().slice(9,10))
+      today.push(new Date().toString().slice(8,9) + (p - index2))
+      // if(new Date().toString().slice(8,9) + (p - index2) == "00"){
+
+      // }
+      
+    }
+
     chartOptions2 = [{
       "captions": [{}],
       "color": [{}],
@@ -387,10 +678,7 @@ function expenseGetData2(){
       }]
     chartData2 = []
       for (let i =0; i < obj1.length; i++){
-          console.log("I hate you")
           var str = obj1[i].date.slice(8, 10);
-          console.log(str)
-          console.log("25")
           track2.forEach(element => {
             if (obj1[i].category.toUpperCase() == element) {
               track1 = false
@@ -411,19 +699,16 @@ function expenseGetData2(){
               }
             }
 
-            if(str === "25" && track1){
+            if(today.includes(str) && track1){
               var cat = obj1[i].category.toUpperCase()
-              console.log(cat)
               chartOptions2[0]["captions"][0]["SAKS" + i] = cat
               chartOptions2[0]["color"][0]["SAKS" + i] = getRandomColor()
-              console.log(chartOptions2)
                 var object1 = {}
                 object1["Catagory"] = "SAKS" + i
                 object1["Type"] = obj1[i].expense_type
                 object1["Price"] = parseInt(obj1[i].amount)
                 chartData2.push(object1)
                 track2.push(cat)
-              console.log(chartData2)
               track1 = true
             }
       }
@@ -446,7 +731,12 @@ function expenseGetData3(){
   let obj1 = new Array()
   db.expense.each(entity => {
   obj1.push(entity)}).then(()=>{
-    var today = new Date().getDay()
+    var today = new Array()
+    for (let index2 = 0; index2 < 3; index2++) {
+      var o = new Date().toString().slice(8,10)
+      var p = parseInt(new Date().toString().slice(9,10))
+      today.push(new Date().toString().slice(8,9) + (p - index2))
+    }
     chartOptions3 = [{
       "captions": [{}],
       "color": [{}],
@@ -456,10 +746,7 @@ function expenseGetData3(){
       }]
     chartData3 = []
       for (let i =0; i < obj1.length; i++){
-          console.log("I hate you")
           var str = obj1[i].date.slice(8, 10);
-          console.log(str)
-          console.log("25")
           track2.forEach(element => {
             if (obj1[i].category.toUpperCase() == element) {
               track1 = false
@@ -480,19 +767,16 @@ function expenseGetData3(){
               }
             }
 
-            if(str === "25" && track1){
+            if(today.includes(str) && track1){
               var cat = obj1[i].category.toUpperCase()
-              console.log(cat)
               chartOptions3[0]["captions"][0]["SAKS" + i] = cat
               chartOptions3[0]["color"][0]["SAKS" + i] = getRandomColor()
-              console.log(chartOptions1)
                 var object1 = {}
                 object1["Catagory"] = "SAKS" + i
                 object1["Type"] = obj1[i].expense_type
                 object1["Price"] = parseInt(obj1[i].amount)
                 chartData3.push(object1)
                 track2.push(cat)
-              console.log(chartData3)
               track1 = true
             }
       }
@@ -512,9 +796,15 @@ function expenseGetData3(){
 var innerCont1 = " .innerCont1"
 var innerCont2 = " .innerCont2"
 var innerCont3 = " .innerCont3"
+var innerCont4 = " .innerCont4"
+var innerCont5 = " .innerCont5"
+var innerCont6 = " .innerCont6"
 var chartInnerDiv1 = '<div class="innerCont1" style="overflow: auto;top:0px; left: 0px; height:91% ; Width:100% ;overflow: hidden;"/>';
 var chartInnerDiv2 = '<div class="innerCont2" style="overflow: auto;top:0px; left: 0px; height:91% ; Width:100% ;overflow: hidden;"/>';
 var chartInnerDiv3 = '<div class="innerCont3" style="overflow: auto;top:0px; left: 0px; height:91% ; Width:100% ;overflow: hidden;"/>';
+var chartInnerDiv4 = '<div class="innerCont4" style="overflow: auto;top:0px; left: 0px; height:91% ; Width:100% ;overflow: hidden;"/>';
+var chartInnerDiv5 = '<div class="innerCont5" style="overflow: auto;top:0px; left: 0px; height:91% ; Width:100% ;overflow: hidden;"/>';
+var chartInnerDiv6 = '<div class="innerCont6" style="overflow: auto;top:0px; left: 0px; height:91% ; Width:100% ;overflow: hidden;"/>';
 var runningColors;
 var runningData;
     
@@ -532,6 +822,18 @@ function Plot2(innerCont, chartInnerDiv) {
 function Plot3(innerCont, chartInnerDiv) {
     TransformChartData(chartData3, chartOptions3, 0);
     BuildPie("chart3", chartData3, chartOptions3, 0, innerCont, chartInnerDiv)
+}
+function Plot4(innerCont, chartInnerDiv) {
+  TransformChartData(chartData4, chartOptions4, 0);
+  BuildPie("chart4", chartData4, chartOptions4, 0, innerCont, chartInnerDiv)
+}
+function Plot5(innerCont, chartInnerDiv) {
+  TransformChartData(chartData5, chartOptions5, 0);
+  BuildPie("chart5", chartData5, chartOptions5, 0, innerCont, chartInnerDiv)
+}
+function Plot6(innerCont, chartInnerDiv) {
+  TransformChartData(chartData6, chartOptions6, 0);
+  BuildPie("chart6", chartData6, chartOptions6, 0, innerCont, chartInnerDiv)
 }
 function BuildPie(id, chartData, options, level, innerCont, chartInnerDiv) {
     var xVarName;
