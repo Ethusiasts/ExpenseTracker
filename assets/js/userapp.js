@@ -723,7 +723,7 @@ function expenseGetData2(){
 
 // Pie chart drawer for the monthly tab
 
-var chartData3;
+var chartData3
 var chartOptions3;
 function expenseGetData3(){
   var track1 = true
@@ -786,6 +786,209 @@ function expenseGetData3(){
 });
 })
 }
+
+
+ar chartData4;
+var chartOptions4;
+function expenseGetData4(){
+  var track1 = true
+  let track2 = new Array()
+  let obj1 = new Array()
+  db.income.each(entity => {
+  obj1.push(entity)}).then(()=>{
+    var today = new Date().getDay()
+    chartOptions4 = [{
+      "captions": [{}],
+      "color": [{}],
+      "xaxis": "Catagory",
+      "xaxisl1": "Type",
+      "yaxis": "Price"
+      }]
+    chartData4 = []
+      for (let i =0; i < obj1.length; i++){
+          console.log("I hate you")
+          var str = obj1[i].date.slice(8, 10);
+          console.log(str)
+          console.log("25")
+          track2.forEach(element => {
+            if (obj1[i].category.toUpperCase() == element) {
+              track1 = false
+            }
+            });
+            if (track1 == false) {
+              for (var key in chartOptions4[0]["captions"][0]) {
+                if (chartOptions4[0]["captions"][0].hasOwnProperty(key)) {
+                    if(chartOptions4[0]["captions"][0][key] == obj1[i].category.toUpperCase()){
+                      var object1 = {}
+                      object1["Catagory"] = key
+                      object1["Type"] = obj1[i].income_type
+                      object1["Price"] = parseInt(obj1[i].amount)
+                      chartData4.push(object1)
+                      break
+                    }
+                }
+              }
+            }
+
+            if(str === "25" && track1){
+              var cat = obj1[i].category.toUpperCase()
+              console.log(cat)
+              chartOptions4[0]["captions"][0]["SAKS" + i] = cat
+              chartOptions4[0]["color"][0]["SAKS" + i] = getRandomColor()
+              console.log(chartOptions1)
+                var object1 = {}
+                object1["Catagory"] = "SAKS" + i
+                object1["Type"] = obj1[i].income_type
+                object1["Price"] = parseInt(obj1[i].amount)
+                chartData4.push(object1)
+                track2.push(cat)
+              console.log(chartData4)
+              track1 = true
+            }
+      }
+}).then(()=> {
+  $(document).ready(function () {
+    Plot4(innerCont4, chartInnerDiv4);
+});
+})
+}
+
+
+
+
+var chartData5;
+var chartOptions5;
+function expenseGetData5(){
+  var track1 = true
+  let track2 = new Array()
+  let obj1 = new Array()
+  db.income.each(entity => {
+  obj1.push(entity)}).then(()=>{
+    var today = new Date().getDay()
+    chartOptions5 = [{
+      "captions": [{}],
+      "color": [{}],
+      "xaxis": "Catagory",
+      "xaxisl1": "Type",
+      "yaxis": "Price"
+      }]
+    chartData5 = []
+      for (let i =0; i < obj1.length; i++){
+          console.log("I hate you")
+          var str = obj1[i].date.slice(8, 10);
+          console.log(str)
+          console.log("25")
+          track2.forEach(element => {
+            if (obj1[i].category.toUpperCase() == element) {
+              track1 = false
+            }
+            });
+            if (track1 == false) {
+              for (var key in chartOptions5[0]["captions"][0]) {
+                if (chartOptions5[0]["captions"][0].hasOwnProperty(key)) {
+                    if(chartOptions5[0]["captions"][0][key] == obj1[i].category.toUpperCase()){
+                      var object1 = {}
+                      object1["Catagory"] = key
+                      object1["Type"] = obj1[i].income_type
+                      object1["Price"] = parseInt(obj1[i].amount)
+                      chartData5.push(object1)
+                      break
+                    }
+                }
+              }
+            }
+
+            if(str === "25" && track1){
+              var cat = obj1[i].category.toUpperCase()
+              console.log(cat)
+              chartOptions5[0]["captions"][0]["SAKS" + i] = cat
+              chartOptions5[0]["color"][0]["SAKS" + i] = getRandomColor()
+              console.log(chartOptions1)
+                var object1 = {}
+                object1["Catagory"] = "SAKS" + i
+                object1["Type"] = obj1[i].income_type
+                object1["Price"] = parseInt(obj1[i].amount)
+                chartData5.push(object1)
+                track2.push(cat)
+              console.log(chartData5)
+              track1 = true
+            }
+      }
+}).then(()=> {
+  $(document).ready(function () {
+    Plot5(innerCont5, chartInnerDiv5);
+});
+})
+}
+
+
+
+
+var chartData6;
+var chartOptions6;
+function expenseGetData6(){
+  var track1 = true
+  let track2 = new Array()
+  let obj1 = new Array()
+  db.income.each(entity => {
+  obj1.push(entity)}).then(()=>{
+    var today = new Date().getDay()
+    chartOptions6 = [{
+      "captions": [{}],
+      "color": [{}],
+      "xaxis": "Catagory",
+      "xaxisl1": "Type",
+      "yaxis": "Price"
+      }]
+    chartData6 = []
+      for (let i =0; i < obj1.length; i++){
+          console.log("I hate you")
+          var str = obj1[i].date.slice(8, 10);
+          console.log(str)
+          console.log("25")
+          track2.forEach(element => {
+            if (obj1[i].category.toUpperCase() == element) {
+              track1 = false
+            }
+            });
+            if (track1 == false) {
+              for (var key in chartOptions6[0]["captions"][0]) {
+                if (chartOptions6[0]["captions"][0].hasOwnProperty(key)) {
+                    if(chartOptions6[0]["captions"][0][key] == obj1[i].category.toUpperCase()){
+                      var object1 = {}
+                      object1["Catagory"] = key
+                      object1["Type"] = obj1[i].income_type
+                      object1["Price"] = parseInt(obj1[i].amount)
+                      chartData6.push(object1)
+                      break
+                    }
+                }
+              }
+            }
+
+            if(str === "25" && track1){
+              var cat = obj1[i].category.toUpperCase()
+              console.log(cat)
+              chartOptions6[0]["captions"][0]["SAKS" + i] = cat
+              chartOptions6[0]["color"][0]["SAKS" + i] = getRandomColor()
+              console.log(chartOptions1)
+                var object1 = {}
+                object1["Catagory"] = "SAKS" + i
+                object1["Type"] = obj1[i].income_type
+                object1["Price"] = parseInt(obj1[i].amount)
+                chartData6.push(object1)
+                track2.push(cat)
+              console.log(chartData6)
+              track1 = true
+            }
+      }
+}).then(()=> {
+  $(document).ready(function () {
+    Plot6(innerCont6, chartInnerDiv6);
+});
+})
+}
+
 
 
 

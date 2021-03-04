@@ -108,7 +108,7 @@ function add(){
 
   if(!(password.value.match(passw))){
       errorMessage3.style.display = "block";
-      errorMessage3.innerHTML = "minimum length of 8 and shouldn't contain other than numbers and letters";
+      errorMessage3.innerHTML = "numbers of length 8 & above";
       errorMessage3.style.color = "#ff0000";
   }
   else{
